@@ -36,5 +36,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - Attack1
   - Attack2
+  - Attack1Particle
+  - Attack2Particle
   DisableAutoOpenWizard: 1
   ShowSettings: 0

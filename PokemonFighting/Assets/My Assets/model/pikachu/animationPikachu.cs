@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using Photon.Pun;
 public class animationPikachu : animationPKM
 {
     public ParticleSystem GroundElectric;
@@ -61,7 +59,6 @@ public class animationPikachu : animationPKM
         }
     }
 
-
     public override void Attack1(int power) {
         var x = GroundElectric.main;
         if (power == 0)
@@ -70,8 +67,9 @@ public class animationPikachu : animationPKM
         {
         }
         anim.SetTrigger("isAttack");
-        GroundElectric.Play();
+        photonView.RPC("Attack1Particle", RpcTarget.All);
     }
+
 
     public override void Attack2(int power) {
         var x = FaceElectricL.main;
@@ -82,8 +80,7 @@ public class animationPikachu : animationPKM
         {
         }
         anim.SetTrigger("isJumping");
-        FaceElectricL.Play();
-        FaceElectricR.Play();
+        photonView.RPC("Attack2Particle", RpcTarget.All);
     }
 
     public override string moveName1() {
@@ -92,6 +89,17 @@ public class animationPikachu : animationPKM
 
     public override string moveName2() {
         return "Thunder Shock";
+    }
+    [PunRPC]
+    public void Attack1Particle()
+    {
+        GroundElectric.Play();
+    }
+    [PunRPC]
+    public void Attack2Particle()
+    {
+        FaceElectricL.Play();
+        FaceElectricR.Play();
     }
        
 }

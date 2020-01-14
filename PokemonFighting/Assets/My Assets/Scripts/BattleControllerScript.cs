@@ -6,7 +6,6 @@ using Photon.Pun;
 
 public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
-    private GameObject pkmPlayer;
     public GameObject pkmOpponent = null;
     public Camera camera;
     private Slider mSlider;
@@ -26,15 +25,16 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        mSlider = gameObject.GetComponentInChildren<Slider>();
+        camera.enabled = photonView.IsMine;
+        mSlider = transform.Find("Canvas/PowerBar").GetComponent<Slider>();
+        Debug.Log(mSlider.name);
         if (photonView.IsMine)
         {
             mSlider.gameObject.SetActive(true);
         }
         
-        pkmPlayer = gameObject;
-        _body = pkmPlayer.GetComponent<Rigidbody>();
-        _animator = pkmPlayer.GetComponent<Animator>();
+        _body = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -82,7 +82,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         // Debug.Log(_inputs.x + " "+  _inputs.y + " "+ _inputs.z);
         if (_inputs != Vector3.zero)
         {
-            pkmPlayer.transform.forward = _inputs;
+            transform.forward = _inputs;
             _animator.SetBool("isMoving", true);
         }
         else
@@ -98,8 +98,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         else if (Input.GetButtonUp("Attack1"))
         {
             isPower = false;
-            // Attack1();
-            photonView.RPC("Attack1", RpcTarget.All);
+            Attack1();
+            //photonView.RPC("Attack1", RpcTarget.All);
         }
         else if (Input.GetButtonDown("Attack2"))
         {
@@ -108,8 +108,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         else if (Input.GetButtonUp("Attack2"))
         {
             isPower = false;
-            // Attack2();
-            photonView.RPC("Attack2", RpcTarget.All);
+            Attack2();
+           // photonView.RPC("Attack2", RpcTarget.All);
         }
         else if (Input.GetButtonDown("Boost") && !isBoostSpeed)
         {
@@ -134,14 +134,16 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             camera.fieldOfView -= 2;
         }
-        camera.transform.position = new Vector3(pkmPlayer.transform.position.x, pkmPlayer.transform.position.y + 1.5f, pkmPlayer.transform.position.z - 4f - cameraTransition);
-        camera.transform.LookAt(pkmPlayer.transform);
+        camera.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z - 4f - cameraTransition);
+        camera.transform.LookAt(transform);
     }
     public void Facing() {
+        /*
         pkmPlayer.transform.LookAt(pkmOpponent.transform.position);
-        pkmOpponent.transform.LookAt(pkmPlayer.transform.position);
+        pkmOpponent.transform.LookAt(transform.position);
         pkmPlayer.transform.localEulerAngles = new Vector3(0f, pkmPlayer.transform.localRotation.eulerAngles.y, 0f);
         pkmOpponent.transform.localEulerAngles = new Vector3(0f, pkmOpponent.transform.localRotation.eulerAngles.y, 0f);
+        */
     }
 
     void LateUpdate()
@@ -174,21 +176,21 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         return -1;
     }
 
-    [PunRPC]
     private void Attack1()
     {
+        if (!photonView.IsMine) return;
         int st = getPowerFromSlider();
         if (st == -1) return;
-        pkmPlayer.GetComponent<animationPKM>().Attack1(st);
+        GetComponent<animationPKM>().Attack1(st);
         StartCoroutine(coolDownAttack());
     }
 
-    [PunRPC]
     private void Attack2()
     {
+        if (!photonView.IsMine) return;
         int st = getPowerFromSlider();
         if (st == -1) return;
-        pkmPlayer.GetComponent<animationPKM>().Attack2(st);
+        GetComponent<animationPKM>().Attack2(st);
         StartCoroutine(coolDownAttack());
     }
 
@@ -207,7 +209,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     private IEnumerator coolDownAttack()
     {
         isColdDownAttack = true;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         isColdDownAttack = false;
     }
 }

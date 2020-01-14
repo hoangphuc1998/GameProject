@@ -5,6 +5,7 @@ using Photon.Pun;
 public abstract class animationPKM : MonoBehaviourPunCallbacks, IPunObservable
 {
     public abstract void Attack1(int st = 0);
+    
     public abstract void Attack2(int st = 0);
     public abstract string moveName1();
     public abstract string moveName2();
