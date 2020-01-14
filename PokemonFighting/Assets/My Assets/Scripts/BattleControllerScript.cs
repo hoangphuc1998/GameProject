@@ -19,14 +19,18 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     private float Speed = 5f;
     private bool isBoostSpeed = false;
     private bool isPower = false;
+    private bool isColdDownAttack = false;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        Slider[] sliders = FindObjectsOfType<Slider>();
+        foreach (Slider x in sliders)
+            x.enabled = false;
         camera.enabled = photonView.IsMine;
-        mSlider = GameObject.Find("PowerBar").GetComponent<Slider>();
+        mSlider = gameObject.GetComponentInChildren<Slider>();
         pkmPlayer = gameObject;
         _body = pkmPlayer.GetComponent<Rigidbody>();
         _animator = pkmPlayer.GetComponent<Animator>();
@@ -70,6 +74,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     private void ControlPlayer()
     {
+        if (isColdDownAttack) return;
         _inputs = Vector3.zero;
         _inputs.x = Input.GetAxis("Horizontal");
         _inputs.z = Input.GetAxis("Vertical");
@@ -174,6 +179,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         int st = getPowerFromSlider();
         if (st == -1) return;
         pkmPlayer.GetComponent<animationPKM>().Attack1(st);
+        StartCoroutine(coolDownAttack());
     }
 
     [PunRPC]
@@ -182,6 +188,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         int st = getPowerFromSlider();
         if (st == -1) return;
         pkmPlayer.GetComponent<animationPKM>().Attack2(st);
+        StartCoroutine(coolDownAttack());
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -194,5 +201,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
 
         }
+    }
+    
+    private IEnumerator coolDownAttack()
+    {
+        isColdDownAttack = true;
+        yield return new WaitForSeconds(1.5f);
+        isColdDownAttack = false;
     }
 }

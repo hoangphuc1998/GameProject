@@ -66,12 +66,8 @@ public class animationPikachu : animationPKM
         var x = GroundElectric.main;
         if (power == 0)
         {
-            x.startSpeed = Random.Range(0.2f, 0.5f);
-            x.startLifetime = .5f;
         } else if (power == 1)
         {
-            x.startSpeed = 15f;
-            x.startLifetime = 1f;
         }
         anim.SetTrigger("isAttack");
         GroundElectric.Play();
@@ -82,16 +78,8 @@ public class animationPikachu : animationPKM
         var y = FaceElectricR.main;
         if (power == 0)
         {
-            x.startSpeed = Random.Range(0.2f, 0.5f);
-            y.startSpeed = Random.Range(0.2f, 0.5f);
-            x.startLifetime = .5f;
-            y.startLifetime = .5f;
         } else if (power == 1)
         {
-            x.startSpeed = Random.Range(0.5f, 1);
-            y.startSpeed = Random.Range(0.5f, 1);
-            x.startLifetime = 1f;
-            y.startLifetime = 1f;
         }
         anim.SetTrigger("isJumping");
         FaceElectricL.Play();
