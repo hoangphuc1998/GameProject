@@ -26,11 +26,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        Slider[] sliders = FindObjectsOfType<Slider>();
-        foreach (Slider x in sliders)
-            x.enabled = false;
-        camera.enabled = photonView.IsMine;
         mSlider = gameObject.GetComponentInChildren<Slider>();
+        if (photonView.IsMine)
+        {
+            mSlider.gameObject.SetActive(true);
+        }
+        
         pkmPlayer = gameObject;
         _body = pkmPlayer.GetComponent<Rigidbody>();
         _animator = pkmPlayer.GetComponent<Animator>();
@@ -55,7 +56,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (isPower) {
             mSlider.value += (float)(0.05 * (sliderDir ? 1 : -1));
-            Debug.Log(mSlider.value);
+            // Debug.Log(mSlider.value);
             if (mSlider.value >= 1) sliderDir = false;
             else if (mSlider.value <= 0) sliderDir = true;
         } else

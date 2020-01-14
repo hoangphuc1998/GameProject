@@ -16897,6 +16897,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerBar
       objectReference: {fileID: 0}
+    - target: {fileID: 1092183336091438963, guid: e729e19ca8584244ba7840641efd8e81,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1092183336091438962, guid: e729e19ca8584244ba7840641efd8e81,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17005,12 +17010,12 @@ PrefabInstance:
     - target: {fileID: 1092183337158238062, guid: e729e19ca8584244ba7840641efd8e81,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1092183337350758092, guid: e729e19ca8584244ba7840641efd8e81,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e729e19ca8584244ba7840641efd8e81, type: 3}
