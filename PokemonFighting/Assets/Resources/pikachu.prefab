@@ -256,7 +256,7 @@ Rigidbody:
   m_GameObject: {fileID: 708480146809671880}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -14682,7 +14682,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 3151630177943628010}
+  - {fileID: 2635978005858477127}
   m_Father: {fileID: 708480146809965736}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17052,7 +17052,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e729e19ca8584244ba7840641efd8e81, type: 3}
---- !u!224 &3151630177943628010 stripped
+--- !u!224 &2635978005858477127 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1092183336091438962, guid: e729e19ca8584244ba7840641efd8e81,
     type: 3}
