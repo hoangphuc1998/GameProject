@@ -1,0 +1,365 @@
+fileFormatVersion: 2
+guid: b6b08ce857323414e916636e5a31fe52
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: EndFeeler
+    100004: EndHead
+    100006: EndHips
+    100008: EndLEar3
+    100010: EndLFoot
+    100012: EndLHand
+    100014: EndLToe
+    100016: EndREar3
+    100018: EndRFoot
+    100020: EndRHand
+    100022: EndRToe
+    100024: EndTail3
+    100026: Feeler
+    100028: Head
+    100030: Hips
+    100032: LArm
+    100034: LEar1
+    100036: LEar2
+    100038: LEar3
+    100040: LFoot
+    100042: LForeArm
+    100044: LHand
+    100046: LLeg
+    100048: LShoulder
+    100050: LThigh
+    100052: LToe
+    100054: Origin
+    100056: //RootNode
+    100058: PikachuM
+    100060: pm0025_00_BodySkin
+    100062: pm0025_00_pikachu
+    100064: pm0025_00_SippoSkin
+    100066: RArm
+    100068: REar1
+    100070: REar2
+    100072: REar3
+    100074: RFoot
+    100076: RForeArm
+    100078: RHand
+    100080: RLeg
+    100082: RShoulder
+    100084: RThigh
+    100086: RToe
+    100088: Spine1
+    100090: Spine2
+    100092: Tail1
+    100094: Tail2
+    100096: Tail3
+    100098: VriVis00
+    100100: Waist
+    400000: Armature
+    400002: EndFeeler
+    400004: EndHead
+    400006: EndHips
+    400008: EndLEar3
+    400010: EndLFoot
+    400012: EndLHand
+    400014: EndLToe
+    400016: EndREar3
+    400018: EndRFoot
+    400020: EndRHand
+    400022: EndRToe
+    400024: EndTail3
+    400026: Feeler
+    400028: Head
+    400030: Hips
+    400032: LArm
+    400034: LEar1
+    400036: LEar2
+    400038: LEar3
+    400040: LFoot
+    400042: LForeArm
+    400044: LHand
+    400046: LLeg
+    400048: LShoulder
+    400050: LThigh
+    400052: LToe
+    400054: Origin
+    400056: //RootNode
+    400058: PikachuM
+    400060: pm0025_00_BodySkin
+    400062: pm0025_00_pikachu
+    400064: pm0025_00_SippoSkin
+    400066: RArm
+    400068: REar1
+    400070: REar2
+    400072: REar3
+    400074: RFoot
+    400076: RForeArm
+    400078: RHand
+    400080: RLeg
+    400082: RShoulder
+    400084: RThigh
+    400086: RToe
+    400088: Spine1
+    400090: Spine2
+    400092: Tail1
+    400094: Tail2
+    400096: Tail3
+    400098: VriVis00
+    400100: Waist
+    2100000: Material__160
+    2100002: Material__161
+    2100004: Material__162
+    2100006: Material__163
+    4300000: PikachuM
+    7400000: Walking
+    7400002: Idle
+    7400004: Jump
+    7400006: Attack
+    7400008: Die
+    9500000: //RootNode
+    13700000: PikachuM
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__160
+    second: {fileID: 2100000, guid: 732c79ae8f90a36449c128d47281a7d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__161
+    second: {fileID: 2100000, guid: 784a068a81c60ad459b9d58aca6f5059, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__162
+    second: {fileID: 2100000, guid: 9348a6fd1702dcd4d83c1dc010a0a6ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material__163
+    second: {fileID: 2100000, guid: f49f1f7a35bcc0c4aa5d78ea24bc2ba9, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walking
+      takeName: Default Take
+      firstFrame: 30
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump
+      takeName: Default Take
+      firstFrame: 60
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Default Take
+      firstFrame: 90
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die
+      takeName: Default Take
+      firstFrame: 115
+      lastFrame: 139
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
