@@ -315,6 +315,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pkmOpponent: {fileID: 0}
   camera: {fileID: 6102461669973753628}
+  health: 100
+  maxHealth: 100
+  pkmUIPrefab: {fileID: 170056, guid: 12627e38515ffbb4fbd5f3e779057b4c, type: 3}
 --- !u!114 &2785039012388774787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14682,7 +14685,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 3151630177943628010}
+  - {fileID: 3151630177943627972}
   m_Father: {fileID: 708480146809965736}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17052,7 +17055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e729e19ca8584244ba7840641efd8e81, type: 3}
---- !u!224 &3151630177943628010 stripped
+--- !u!224 &3151630177943627972 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1092183336091438962, guid: e729e19ca8584244ba7840641efd8e81,
     type: 3}

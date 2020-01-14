@@ -19,8 +19,11 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     private bool isBoostSpeed = false;
     private bool isPower = false;
     private bool isColdDownAttack = false;
+    public int health = 100;
+    public int maxHealth = 100;
 
-
+    // Pokemon UI (health bar, name)
+    public GameObject pkmUIPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +38,10 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         
         _body = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
+        // Set UI
+        GameObject pkmUI = Instantiate(pkmUIPrefab);
+        pkmUI.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+        
     }
 
     // Update is called once per frame
@@ -49,9 +56,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         UpdateCameraPosition();
         UpdateSlider();
         // Facing();
-        
     }
-
     private void UpdateSlider()
     {
         if (isPower) {
@@ -211,5 +216,14 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         isColdDownAttack = true;
         yield return new WaitForSeconds(1f);
         isColdDownAttack = false;
+    }
+    [PunRPC]
+    public void DecreaseHeath(int amount)
+    {
+        this.health -= amount;
+        if (this.health < 0)
+        {
+            this.health = 0;
+        }
     }
 }

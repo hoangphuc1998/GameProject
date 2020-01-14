@@ -119,7 +119,7 @@ public class Laucher : MonoBehaviourPunCallbacks
             }
 
             // add new messages as a new line and at the bottom of the log.
-            feedbackText.text += System.Environment.NewLine + message;
+            //feedbackText.text += System.Environment.NewLine + message;
         }
 
         #endregion

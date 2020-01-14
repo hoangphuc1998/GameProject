@@ -38,5 +38,6 @@ MonoBehaviour:
   - Attack2
   - Attack1Particle
   - Attack2Particle
+  - DecreaseHeath
   DisableAutoOpenWizard: 1
   ShowSettings: 0
