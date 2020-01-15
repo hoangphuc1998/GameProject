@@ -57,12 +57,11 @@ public class PokemonUI : MonoBehaviour
     void LateUpdate()
     {
 
-   
+        
         if (targetRenderer != null)
         {
             this._canvasGroup.alpha = targetRenderer.isVisible ? 1f : 0f;
         }
-
         if (targetTransform != null)
         {
             targetPosition = targetTransform.position;

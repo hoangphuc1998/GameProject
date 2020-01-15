@@ -33,9 +33,10 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        
 
-        
+
+        camera = transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<Camera>();
+        transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<AudioListener>().enabled = photonView.IsMine;
         camera.enabled = photonView.IsMine;
         
         if (photonView.IsMine)

@@ -18,7 +18,6 @@ public class ParticleTowardObject : MonoBehaviourPunCallbacks
     {
         if (particleSystem.isPlaying)
         {
-            Debug.Log("Putting");
             ParticleSystem.Particle[] particles = new ParticleSystem.Particle[particleSystem.particleCount];
             var count = particleSystem.GetParticles(particles);
 
