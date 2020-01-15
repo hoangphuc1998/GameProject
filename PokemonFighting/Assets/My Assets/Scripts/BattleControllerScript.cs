@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
@@ -24,17 +26,54 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     public int health = 100;
     public int maxHealth = 100;
 
+    private GameObject UIController;
     // Pokemon UI (health bar, name)
     public GameObject pkmUIPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        joystick = GameObject.Find("Joystick").GetComponent<FloatingJoystick>();
+        
+
+        
         camera.enabled = photonView.IsMine;
-        mSlider = transform.Find("Canvas/PowerBar").GetComponent<Slider>();
+        
         if (photonView.IsMine)
         {
+            UIController = Instantiate(Resources.Load("UIController") as GameObject, gameObject.transform);
+            UIController.name = "UIController";
+            joystick = transform.Find("UIController/Joystick").GetComponent<FloatingJoystick>();
+            mSlider = transform.Find("UIController/PowerBar").GetComponent<Slider>();
+
+            Button attack1Btn = transform.Find("UIController/Attack1").GetComponent<Button>();
+            attack1Btn.gameObject.SetActive(true);
+            Button attack2Btn = transform.Find("UIController/Attack2").GetComponent<Button>();
+            attack2Btn.gameObject.SetActive(true);
+
+            EventTrigger.Entry emitingAttack = new EventTrigger.Entry();
+            emitingAttack.eventID = EventTriggerType.PointerDown;
+            emitingAttack.callback.AddListener((data) => { EmitingAttackDown(); });
+
+            EventTrigger.Entry releaseAttack1 = new EventTrigger.Entry();
+            releaseAttack1.eventID = EventTriggerType.PointerUp;
+            releaseAttack1.callback.AddListener((data) => { ReleaseAttack1(); });
+
+            EventTrigger.Entry releaseAttack2 = new EventTrigger.Entry();
+            releaseAttack2.eventID = EventTriggerType.PointerUp;
+            releaseAttack2.callback.AddListener((data) => { ReleaseAttack2(); });
+
+            EventTrigger triggerAttack1Btn = attack1Btn.GetComponent<EventTrigger>();
+            triggerAttack1Btn.triggers.Add(emitingAttack);
+            triggerAttack1Btn.triggers.Add(releaseAttack1);
+
+            EventTrigger triggerAttack2Btn = attack2Btn.GetComponent<EventTrigger>();
+            triggerAttack2Btn.triggers.Add(emitingAttack);
+            triggerAttack2Btn.triggers.Add(releaseAttack2);
+
+
+
+            
+            joystick.gameObject.SetActive(true);
             mSlider.gameObject.SetActive(true);
         }
         
@@ -88,9 +127,13 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         _inputs.z = Input.GetAxis("Vertical");
         _inputJoyStick = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
         // Debug.Log(_inputs.x + " "+  _inputs.y + " "+ _inputs.z);
-        if (_inputs != Vector3.zero || _inputJoyStick!=Vector3.zero)
+        if (_inputs != Vector3.zero)
         {
             transform.forward = _inputs;
+            _animator.SetBool("isMoving", true);
+        }
+        else if (_inputJoyStick != Vector3.zero)
+        {
             transform.forward = _inputJoyStick;
             _animator.SetBool("isMoving", true);
         }
