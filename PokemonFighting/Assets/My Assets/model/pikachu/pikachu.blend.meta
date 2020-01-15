@@ -1,122 +1,353 @@
 fileFormatVersion: 2
 guid: b6b08ce857323414e916636e5a31fe52
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Armature
-    100002: EndFeeler
-    100004: EndHead
-    100006: EndHips
-    100008: EndLEar3
-    100010: EndLFoot
-    100012: EndLHand
-    100014: EndLToe
-    100016: EndREar3
-    100018: EndRFoot
-    100020: EndRHand
-    100022: EndRToe
-    100024: EndTail3
-    100026: Feeler
-    100028: Head
-    100030: Hips
-    100032: LArm
-    100034: LEar1
-    100036: LEar2
-    100038: LEar3
-    100040: LFoot
-    100042: LForeArm
-    100044: LHand
-    100046: LLeg
-    100048: LShoulder
-    100050: LThigh
-    100052: LToe
-    100054: Origin
-    100056: //RootNode
-    100058: PikachuM
-    100060: pm0025_00_BodySkin
-    100062: pm0025_00_pikachu
-    100064: pm0025_00_SippoSkin
-    100066: RArm
-    100068: REar1
-    100070: REar2
-    100072: REar3
-    100074: RFoot
-    100076: RForeArm
-    100078: RHand
-    100080: RLeg
-    100082: RShoulder
-    100084: RThigh
-    100086: RToe
-    100088: Spine1
-    100090: Spine2
-    100092: Tail1
-    100094: Tail2
-    100096: Tail3
-    100098: VriVis00
-    100100: Waist
-    400000: Armature
-    400002: EndFeeler
-    400004: EndHead
-    400006: EndHips
-    400008: EndLEar3
-    400010: EndLFoot
-    400012: EndLHand
-    400014: EndLToe
-    400016: EndREar3
-    400018: EndRFoot
-    400020: EndRHand
-    400022: EndRToe
-    400024: EndTail3
-    400026: Feeler
-    400028: Head
-    400030: Hips
-    400032: LArm
-    400034: LEar1
-    400036: LEar2
-    400038: LEar3
-    400040: LFoot
-    400042: LForeArm
-    400044: LHand
-    400046: LLeg
-    400048: LShoulder
-    400050: LThigh
-    400052: LToe
-    400054: Origin
-    400056: //RootNode
-    400058: PikachuM
-    400060: pm0025_00_BodySkin
-    400062: pm0025_00_pikachu
-    400064: pm0025_00_SippoSkin
-    400066: RArm
-    400068: REar1
-    400070: REar2
-    400072: REar3
-    400074: RFoot
-    400076: RForeArm
-    400078: RHand
-    400080: RLeg
-    400082: RShoulder
-    400084: RThigh
-    400086: RToe
-    400088: Spine1
-    400090: Spine2
-    400092: Tail1
-    400094: Tail2
-    400096: Tail3
-    400098: VriVis00
-    400100: Waist
-    2100000: Material__160
-    2100002: Material__161
-    2100004: Material__162
-    2100006: Material__163
-    4300000: PikachuM
-    7400000: Walking
-    7400002: Idle
-    7400004: Jump
-    7400006: Attack
-    7400008: Die
-    9500000: //RootNode
-    13700000: PikachuM
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Armature
+  - first:
+      1: 100002
+    second: EndFeeler
+  - first:
+      1: 100004
+    second: EndHead
+  - first:
+      1: 100006
+    second: EndHips
+  - first:
+      1: 100008
+    second: EndLEar3
+  - first:
+      1: 100010
+    second: EndLFoot
+  - first:
+      1: 100012
+    second: EndLHand
+  - first:
+      1: 100014
+    second: EndLToe
+  - first:
+      1: 100016
+    second: EndREar3
+  - first:
+      1: 100018
+    second: EndRFoot
+  - first:
+      1: 100020
+    second: EndRHand
+  - first:
+      1: 100022
+    second: EndRToe
+  - first:
+      1: 100024
+    second: EndTail3
+  - first:
+      1: 100026
+    second: Feeler
+  - first:
+      1: 100028
+    second: Head
+  - first:
+      1: 100030
+    second: Hips
+  - first:
+      1: 100032
+    second: LArm
+  - first:
+      1: 100034
+    second: LEar1
+  - first:
+      1: 100036
+    second: LEar2
+  - first:
+      1: 100038
+    second: LEar3
+  - first:
+      1: 100040
+    second: LFoot
+  - first:
+      1: 100042
+    second: LForeArm
+  - first:
+      1: 100044
+    second: LHand
+  - first:
+      1: 100046
+    second: LLeg
+  - first:
+      1: 100048
+    second: LShoulder
+  - first:
+      1: 100050
+    second: LThigh
+  - first:
+      1: 100052
+    second: LToe
+  - first:
+      1: 100054
+    second: Origin
+  - first:
+      1: 100056
+    second: //RootNode
+  - first:
+      1: 100058
+    second: PikachuM
+  - first:
+      1: 100060
+    second: pm0025_00_BodySkin
+  - first:
+      1: 100062
+    second: pm0025_00_pikachu
+  - first:
+      1: 100064
+    second: pm0025_00_SippoSkin
+  - first:
+      1: 100066
+    second: RArm
+  - first:
+      1: 100068
+    second: REar1
+  - first:
+      1: 100070
+    second: REar2
+  - first:
+      1: 100072
+    second: REar3
+  - first:
+      1: 100074
+    second: RFoot
+  - first:
+      1: 100076
+    second: RForeArm
+  - first:
+      1: 100078
+    second: RHand
+  - first:
+      1: 100080
+    second: RLeg
+  - first:
+      1: 100082
+    second: RShoulder
+  - first:
+      1: 100084
+    second: RThigh
+  - first:
+      1: 100086
+    second: RToe
+  - first:
+      1: 100088
+    second: Spine1
+  - first:
+      1: 100090
+    second: Spine2
+  - first:
+      1: 100092
+    second: Tail1
+  - first:
+      1: 100094
+    second: Tail2
+  - first:
+      1: 100096
+    second: Tail3
+  - first:
+      1: 100098
+    second: VriVis00
+  - first:
+      1: 100100
+    second: Waist
+  - first:
+      4: 400000
+    second: Armature
+  - first:
+      4: 400002
+    second: EndFeeler
+  - first:
+      4: 400004
+    second: EndHead
+  - first:
+      4: 400006
+    second: EndHips
+  - first:
+      4: 400008
+    second: EndLEar3
+  - first:
+      4: 400010
+    second: EndLFoot
+  - first:
+      4: 400012
+    second: EndLHand
+  - first:
+      4: 400014
+    second: EndLToe
+  - first:
+      4: 400016
+    second: EndREar3
+  - first:
+      4: 400018
+    second: EndRFoot
+  - first:
+      4: 400020
+    second: EndRHand
+  - first:
+      4: 400022
+    second: EndRToe
+  - first:
+      4: 400024
+    second: EndTail3
+  - first:
+      4: 400026
+    second: Feeler
+  - first:
+      4: 400028
+    second: Head
+  - first:
+      4: 400030
+    second: Hips
+  - first:
+      4: 400032
+    second: LArm
+  - first:
+      4: 400034
+    second: LEar1
+  - first:
+      4: 400036
+    second: LEar2
+  - first:
+      4: 400038
+    second: LEar3
+  - first:
+      4: 400040
+    second: LFoot
+  - first:
+      4: 400042
+    second: LForeArm
+  - first:
+      4: 400044
+    second: LHand
+  - first:
+      4: 400046
+    second: LLeg
+  - first:
+      4: 400048
+    second: LShoulder
+  - first:
+      4: 400050
+    second: LThigh
+  - first:
+      4: 400052
+    second: LToe
+  - first:
+      4: 400054
+    second: Origin
+  - first:
+      4: 400056
+    second: //RootNode
+  - first:
+      4: 400058
+    second: PikachuM
+  - first:
+      4: 400060
+    second: pm0025_00_BodySkin
+  - first:
+      4: 400062
+    second: pm0025_00_pikachu
+  - first:
+      4: 400064
+    second: pm0025_00_SippoSkin
+  - first:
+      4: 400066
+    second: RArm
+  - first:
+      4: 400068
+    second: REar1
+  - first:
+      4: 400070
+    second: REar2
+  - first:
+      4: 400072
+    second: REar3
+  - first:
+      4: 400074
+    second: RFoot
+  - first:
+      4: 400076
+    second: RForeArm
+  - first:
+      4: 400078
+    second: RHand
+  - first:
+      4: 400080
+    second: RLeg
+  - first:
+      4: 400082
+    second: RShoulder
+  - first:
+      4: 400084
+    second: RThigh
+  - first:
+      4: 400086
+    second: RToe
+  - first:
+      4: 400088
+    second: Spine1
+  - first:
+      4: 400090
+    second: Spine2
+  - first:
+      4: 400092
+    second: Tail1
+  - first:
+      4: 400094
+    second: Tail2
+  - first:
+      4: 400096
+    second: Tail3
+  - first:
+      4: 400098
+    second: VriVis00
+  - first:
+      4: 400100
+    second: Waist
+  - first:
+      21: 2100000
+    second: Material__160
+  - first:
+      21: 2100002
+    second: Material__161
+  - first:
+      21: 2100004
+    second: Material__162
+  - first:
+      21: 2100006
+    second: Material__163
+  - first:
+      43: 4300000
+    second: PikachuM
+  - first:
+      74: 7400000
+    second: Walking
+  - first:
+      74: 7400002
+    second: Idle
+  - first:
+      74: 7400004
+    second: Jump
+  - first:
+      74: 7400006
+    second: Attack
+  - first:
+      74: 7400008
+    second: Die
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: PikachuM
+  - first:
+      74: 5522812681064789136
+    second: Run
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -168,6 +399,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: ArmatureAction
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -196,6 +428,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walking
       takeName: Default Take
+      internalID: 0
       firstFrame: 30
       lastFrame: 50
       wrapMode: 0
@@ -224,6 +457,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jump
       takeName: Default Take
+      internalID: 0
       firstFrame: 60
       lastFrame: 80
       wrapMode: 0
@@ -252,6 +486,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack
       takeName: Default Take
+      internalID: 0
       firstFrame: 90
       lastFrame: 110
       wrapMode: 0
@@ -280,6 +515,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Die
       takeName: Default Take
+      internalID: 0
       firstFrame: 115
       lastFrame: 139
       wrapMode: 0
@@ -305,6 +541,35 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Default Take
+      internalID: 0
+      firstFrame: 155
+      lastFrame: 170
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -312,6 +577,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -319,18 +585,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -339,10 +606,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -352,6 +620,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
