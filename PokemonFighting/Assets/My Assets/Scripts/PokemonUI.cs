@@ -9,11 +9,11 @@ public class PokemonUI : MonoBehaviour
     [SerializeField]
     private Vector3 screenOffset = new Vector3(0f, 30f, 0f);
 
-    [Tooltip("UI Text to display Player's Name")]
     [SerializeField]
     private Text playerNameText;
+    [SerializeField]
+    private Text playerScore;
 
-    [Tooltip("UI Slider to display Player's Health")]
     [SerializeField]
     private Slider playerHealthSlider;
 
@@ -51,6 +51,10 @@ public class PokemonUI : MonoBehaviour
         if (playerHealthSlider != null)
         {
             playerHealthSlider.value = (float)target.health / (float)target.maxHealth;
+        }
+        if (playerScore != null)
+        {
+            playerScore.text = target.score.ToString();
         }
     }
 
