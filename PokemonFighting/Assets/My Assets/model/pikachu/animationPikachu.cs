@@ -77,10 +77,10 @@ public class animationPikachu : animationPKM
         BattleControllerScript script = target.GetComponent<BattleControllerScript>();
         int score = script.score;
         int health = script.health;
-        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.AllBuffered, damage);
+        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.All, damage);
         if (health <= damage)
         {
-            this.gameObject.GetPhotonView().RPC("IncreaseScore", RpcTarget.AllBuffered, score / 2 + 1);
+            this.gameObject.GetPhotonView().RPC("IncreaseScore", RpcTarget.All, score / 2 + 1);
         }
         
     }
@@ -105,10 +105,10 @@ public class animationPikachu : animationPKM
         BattleControllerScript script = target.GetComponent<BattleControllerScript>();
         int score = script.score;
         int health = script.health;
-        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.AllBuffered, damage);
+        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.All, damage);
         if (health <= damage)
         {
-            this.gameObject.GetPhotonView().RPC("IncreaseScore", RpcTarget.AllBuffered, score / 2 + 1);
+            this.gameObject.GetPhotonView().RPC("IncreaseScore", RpcTarget.All, score / 2 + 1);
         }
     }
 

@@ -105,7 +105,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             return;
         }
-
+        //Leave Room when die
+        if (this.health <= 0)
+        {
+            Destroy(this.gameObject);
+            PhotonNetwork.LeaveRoom();
+        }
         ControlPlayer();
         UpdateCameraPosition();
         UpdateSlider();
@@ -296,11 +301,13 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-
+            stream.SendNext(this.health);
+            stream.SendNext(this.score);
         }
         else
         {
-
+            this.health = (int)stream.ReceiveNext();
+            this.score = (int)stream.ReceiveNext();
         }
     }
     
@@ -317,15 +324,13 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (this.health < 0)
         {
             this.health = 0;
-            
-            PhotonNetwork.LeaveRoom();
         }
     }
 
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene("Launcher");
-        Destroy(this.gameObject);
+        base.OnLeftRoom();
     }
 
     [PunRPC]
