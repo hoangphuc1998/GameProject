@@ -326,17 +326,19 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         foreach (GameObject otherPlayer in otherPlayers)
         {
             Vector2 v1 = new Vector2(otherPlayer.transform.position.x - gameObject.transform.position.x, otherPlayer.transform.position.z - gameObject.transform.position.z);
-            Vector2 v2 = new Vector2(Mathf.Sin(transform.rotation.y / 180f) * 1 - gameObject.transform.position.x, Mathf.Cos(transform.rotation.y / 180f) * 1 - gameObject.transform.position.z);
+            Vector2 v2 = new Vector2(transform.forward.x, transform.forward.z);
+            /*
             Debug.DrawLine(
                 new Vector3(otherPlayer.transform.position.x,1, otherPlayer.transform.position.z),
                 new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z)
                 , Color.black, 10000);
             Debug.DrawLine(
-            new Vector3(Mathf.Cos(180f - transform.rotation.y / 180f) * 1 + gameObject.transform.position.x, 1, Mathf.Sin(180f - transform.rotation.y / 180f) * 1 + gameObject.transform.position.z),
+            new Vector3(v2.x + gameObject.transform.position.x, 1, v2.y + gameObject.transform.position.z),
             new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z)
             , Color.black, 10000);
             float _angle = Mathf.Abs(Vector2.Angle(v1, v2));
             Debug.Log(_angle);
+            */
             if (_angle <= limit && min_angle > _angle)
             {
                 ans = otherPlayer;
