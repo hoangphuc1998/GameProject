@@ -16,6 +16,7 @@ public class ParticleTowardObject : MonoBehaviourPunCallbacks
     private void Update()
     {
         target = GetComponentInParent<animationPKM>().target;
+        if (target == null) return;
         if (particleSystem.isPlaying)
         {
             ParticleSystem.Particle[] particles = new ParticleSystem.Particle[particleSystem.particleCount];

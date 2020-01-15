@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -31,6 +32,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     private GameObject UIController;
     // Pokemon UI (health bar, name)
     public GameObject pkmUIPrefab;
+    // Score
+    public int score = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +105,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             return;
         }
-
+        //Leave Room when die
+        if (this.health <= 0)
+        {
+            Destroy(this.gameObject);
+            PhotonNetwork.LeaveRoom();
+        }
         ControlPlayer();
         UpdateCameraPosition();
         UpdateSlider();
@@ -293,11 +301,13 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
-
+            stream.SendNext(this.health);
+            stream.SendNext(this.score);
         }
         else
         {
-
+            this.health = (int)stream.ReceiveNext();
+            this.score = (int)stream.ReceiveNext();
         }
     }
     
@@ -308,13 +318,25 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         isColdDownAttack = false;
     }
     [PunRPC]
-    public void DecreaseHeath(int amount)
+    public void DecreaseHealth(int amount)
     {
         this.health -= amount;
         if (this.health < 0)
         {
             this.health = 0;
         }
+    }
+
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("Launcher");
+        base.OnLeftRoom();
+    }
+
+    [PunRPC]
+    public void IncreaseScore(int amount)
+    {
+        this.score += amount;
     }
 
     private GameObject FindPray(float limit)
