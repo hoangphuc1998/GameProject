@@ -34,7 +34,7 @@ public class PokemonUI : MonoBehaviour
 
         _canvasGroup = this.GetComponent<CanvasGroup>();
 
-        this.transform.SetParent(GameObject.Find("Canvas").GetComponent<Transform>(), false);
+        //this.transform.SetParent(GameObject.Find("UICanvas").GetComponent<Transform>(), false);
     }
 
     void Update()
@@ -65,10 +65,11 @@ public class PokemonUI : MonoBehaviour
         if (targetTransform != null)
         {
             targetPosition = targetTransform.position;
-            targetPosition.y += characterControllerHeight;
+            targetPosition.y = this.target.GetComponent<Collider>().bounds.size.z - .5f;
 
             //this.transform.position = Camera.main.WorldToScreenPoint(targetPosition) + screenOffset;
-            this.transform.position = this.target.camera.WorldToScreenPoint(targetPosition) + screenOffset;
+
+           this.transform.position = GameObject.Find("ThirdPersonCamera").GetComponent<Camera>().WorldToScreenPoint(targetPosition) + screenOffset;
         }
 
     }
