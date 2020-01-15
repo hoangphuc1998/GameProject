@@ -6,7 +6,7 @@ using Photon.Pun;
 public class ParticleTowardObject : MonoBehaviourPunCallbacks
 {
     ParticleSystem particleSystem;
-    float alpha = 0.5f;
+    public float alpha = 0.5f;
     private GameObject target = null;
     void Start()
     {
@@ -15,7 +15,7 @@ public class ParticleTowardObject : MonoBehaviourPunCallbacks
     }
     private void Update()
     {
-        target = GetComponentInParent<animationPikachu>().target;
+        target = GetComponentInParent<animationPKM>().target;
         if (particleSystem.isPlaying)
         {
             ParticleSystem.Particle[] particles = new ParticleSystem.Particle[particleSystem.particleCount];

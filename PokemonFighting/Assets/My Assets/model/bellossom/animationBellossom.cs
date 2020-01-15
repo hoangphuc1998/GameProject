@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using Photon.Pun;
 // BELLOSSOM
 public class animationBellossom : animationPKM
 {
     public ParticleSystem particleAttack1;
     public ParticleSystem particleAttack2;
-
     int cur = 0;
     int perFrame = 20;
     float[] eyeOffsetX = {0, (float) 0.5, (float) 0.5, (float) 0.5};
@@ -59,15 +57,46 @@ public class animationBellossom : animationPKM
         }
     }
 
-
-    public override void Attack1(GameObject target=null, int st = 0) {
+    public override void Attack1(GameObject target, int power)
+    {
+        var x = particleAttack1.main;
+        if (power == 0)
+        {
+        }
+        else if (power == 1)
+        {
+        }
         anim.SetTrigger("isJumping");
-        particleAttack1.Play();
+        this.target = target;
+        photonView.RPC("Attack1Particle", RpcTarget.All);
     }
 
-    public override void Attack2(GameObject target=null, int st = 0) {
+
+    public override void Attack2(GameObject target, int power)
+    {
+        var x = particleAttack2.main;
+        var y = particleAttack2.main;
+        if (power == 0)
+        {
+        }
+        else if (power == 1)
+        {
+        }
         anim.SetTrigger("isJumping");
-        particleAttack2.Play();
+        this.target = target;
+        photonView.RPC("Attack2Particle", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void Attack1Particle()
+    {
+        particleAttack1.Play();
+    }
+    [PunRPC]
+    public void Attack2Particle()
+    {
+        particleAttack2.GetComponent<ParticleTowardObject>().Play();
+        particleAttack2.GetComponent<ParticleTowardObject>().Play();
     }
 
     public override string moveName1() {

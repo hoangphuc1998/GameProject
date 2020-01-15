@@ -5,7 +5,6 @@ public class animationPikachu : animationPKM
     public ParticleSystem GroundElectric;
     public ParticleSystem FaceElectricL;
     public ParticleSystem FaceElectricR;
-    public GameObject target = null;
     int cur = 0;
     int perFrame = 20;
     float[] eyeOffsetX = {0, 0, (float) 0.5, (float) 0.5};
