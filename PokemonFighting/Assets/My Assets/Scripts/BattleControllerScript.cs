@@ -76,14 +76,18 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             
             joystick.gameObject.SetActive(true);
             mSlider.gameObject.SetActive(true);
+        } else
+        {
+            camera.name = "UnusedCamera";
         }
         
         _body = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         // Set UI
-        GameObject pkmUI = Instantiate(pkmUIPrefab);
-        pkmUI.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
-        
+        GameObject pkmUI = Instantiate(pkmUIPrefab, gameObject.transform.Find("Canvas").transform);
+        pkmUI.SendMessage("SetTarget", gameObject.GetComponent<BattleControllerScript>(), SendMessageOptions.RequireReceiver);
+
+
     }
 
     // Update is called once per frame
