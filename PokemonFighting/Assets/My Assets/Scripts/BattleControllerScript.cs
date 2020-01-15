@@ -336,9 +336,10 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             new Vector3(v2.x + gameObject.transform.position.x, 1, v2.y + gameObject.transform.position.z),
             new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z)
             , Color.black, 10000);
-            float _angle = Mathf.Abs(Vector2.Angle(v1, v2));
+            
             Debug.Log(_angle);
             */
+            float _angle = Mathf.Abs(Vector2.Angle(v1, v2));
             if (_angle <= limit && min_angle > _angle)
             {
                 ans = otherPlayer;
