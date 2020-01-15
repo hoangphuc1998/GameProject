@@ -5,7 +5,7 @@ public class animationPikachu : animationPKM
     public ParticleSystem GroundElectric;
     public ParticleSystem FaceElectricL;
     public ParticleSystem FaceElectricR;
-
+    public GameObject target = null;
     int cur = 0;
     int perFrame = 20;
     float[] eyeOffsetX = {0, 0, (float) 0.5, (float) 0.5};
@@ -59,7 +59,7 @@ public class animationPikachu : animationPKM
         }
     }
 
-    public override void Attack1(int power) {
+    public override void Attack1(GameObject target, int power) {
         var x = GroundElectric.main;
         if (power == 0)
         {
@@ -67,11 +67,12 @@ public class animationPikachu : animationPKM
         {
         }
         anim.SetTrigger("isAttack");
+        this.target = target;
         photonView.RPC("Attack1Particle", RpcTarget.All);
     }
 
 
-    public override void Attack2(int power) {
+    public override void Attack2(GameObject target, int power) {
         var x = FaceElectricL.main;
         var y = FaceElectricR.main;
         if (power == 0)
@@ -80,6 +81,7 @@ public class animationPikachu : animationPKM
         {
         }
         anim.SetTrigger("isJumping");
+        this.target = target;
         photonView.RPC("Attack2Particle", RpcTarget.All);
     }
 

@@ -60,12 +60,12 @@ public class animationBellossom : animationPKM
     }
 
 
-    public override void Attack1(int st = 0) {
+    public override void Attack1(GameObject target=null, int st = 0) {
         anim.SetTrigger("isJumping");
         particleAttack1.Play();
     }
 
-    public override void Attack2(int st = 0) {
+    public override void Attack2(GameObject target=null, int st = 0) {
         anim.SetTrigger("isJumping");
         particleAttack2.Play();
     }

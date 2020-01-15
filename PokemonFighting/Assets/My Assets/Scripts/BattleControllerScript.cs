@@ -8,9 +8,11 @@ using Photon.Pun;
 
 public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
+    float[] limit_attack = {30f, 60f};
     private FloatingJoystick joystick;
     public GameObject pkmOpponent = null;
-    public Camera camera;
+    private Camera camera;
+    private GameObject cameraWrapper;
     private Slider mSlider;
     private bool sliderDir = true;
     public static GameObject LocalPlayerInstance = null;
@@ -34,7 +36,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
 
-
+        cameraWrapper = transform.Find("CameraWrapper").gameObject;
         camera = transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<Camera>();
         transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<AudioListener>().enabled = photonView.IsMine;
         camera.enabled = photonView.IsMine;
@@ -70,15 +72,18 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             EventTrigger triggerAttack2Btn = attack2Btn.GetComponent<EventTrigger>();
             triggerAttack2Btn.triggers.Add(emitingAttack);
             triggerAttack2Btn.triggers.Add(releaseAttack2);
-
-
-
             
             joystick.gameObject.SetActive(true);
             mSlider.gameObject.SetActive(true);
+
+            gameObject.tag = "Player";
         } else
         {
-            camera.name = "UnusedCamera";
+            //camera.name = "UnusedCamera";
+            Destroy(cameraWrapper);
+            Destroy(UIController);
+
+            gameObject.tag = "OtherPlayer";
         }
         
         _body = GetComponent<Rigidbody>();
@@ -171,10 +176,13 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             isBoostSpeed = true;
             StartCoroutine(coolDownBoostSpeed());
         } 
-        /*else if (Input.GetButtonDown("RotateLeft"))
+        else if (Input.GetButtonDown("RotateLeft"))
         {
-           // camera.transform.rotation += new Vector3()
-        }*/
+            //cameraWrapper.transform.eulerAngles += new Vector3(0, 1, 0);
+        } else if (Input.GetButtonDown("RotateRight"))
+        {
+            //cameraWrapper.transform.eulerAngles -= new Vector3(0, 1, 0);
+        }
     }
     private void UpdateCameraPosition()
     {
@@ -258,7 +266,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (!photonView.IsMine) return;
         int st = getPowerFromSlider();
         if (st == -1) return;
-        GetComponent<animationPKM>().Attack1(st);
+        GameObject target = FindPray(limit_attack[st]);
+        if (target == null)
+        {
+            return;
+        }
+        GetComponent<animationPKM>().Attack1(target, st);
         StartCoroutine(coolDownAttack());
     }
 
@@ -267,7 +280,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         if (!photonView.IsMine) return;
         int st = getPowerFromSlider();
         if (st == -1) return;
-        GetComponent<animationPKM>().Attack2(st);
+        GameObject target = FindPray(limit_attack[st]);
+        if (target == null)
+        {
+            return;
+        }
+        GetComponent<animationPKM>().Attack2(target, st);
         StartCoroutine(coolDownAttack());
     }
 
@@ -297,5 +315,34 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             this.health = 0;
         }
+    }
+
+    private GameObject FindPray(float limit)
+    {
+        GameObject[] otherPlayers = GameObject.FindGameObjectsWithTag("OtherPlayer");
+        if (otherPlayers.Length == 0) return null;
+        GameObject ans = null;
+        float min_angle = 180;
+        foreach (GameObject otherPlayer in otherPlayers)
+        {
+            Vector2 v1 = new Vector2(otherPlayer.transform.position.x - gameObject.transform.position.x, otherPlayer.transform.position.z - gameObject.transform.position.z);
+            Vector2 v2 = new Vector2(Mathf.Sin(transform.rotation.y / 180f) * 1 - gameObject.transform.position.x, Mathf.Cos(transform.rotation.y / 180f) * 1 - gameObject.transform.position.z);
+            Debug.DrawLine(
+                new Vector3(otherPlayer.transform.position.x,1, otherPlayer.transform.position.z),
+                new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z)
+                , Color.black, 10000);
+            Debug.DrawLine(
+            new Vector3(Mathf.Cos(180f - transform.rotation.y / 180f) * 1 + gameObject.transform.position.x, 1, Mathf.Sin(180f - transform.rotation.y / 180f) * 1 + gameObject.transform.position.z),
+            new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z)
+            , Color.black, 10000);
+            float _angle = Mathf.Abs(Vector2.Angle(v1, v2));
+            Debug.Log(_angle);
+            if (_angle <= limit && min_angle > _angle)
+            {
+                ans = otherPlayer;
+                min_angle = _angle;
+            }
+        }
+        return ans;
     }
 }
