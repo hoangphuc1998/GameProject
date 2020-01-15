@@ -98,8 +98,8 @@ public class animationPikachu : animationPKM
     [PunRPC]
     public void Attack2Particle()
     {
-        FaceElectricL.Play();
-        FaceElectricR.Play();
+        FaceElectricL.GetComponent<ParticleTowardObject>().Play();
+        FaceElectricR.GetComponent<ParticleTowardObject>().Play();
     }
        
 }

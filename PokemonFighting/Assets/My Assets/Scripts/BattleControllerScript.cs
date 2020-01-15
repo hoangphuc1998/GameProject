@@ -6,6 +6,7 @@ using Photon.Pun;
 
 public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 {
+    private FloatingJoystick joystick;
     public GameObject pkmOpponent = null;
     public Camera camera;
     private Slider mSlider;
@@ -15,19 +16,23 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     private Rigidbody _body;
     private Animator _animator;
     private Vector3 _inputs = Vector3.zero;
+    private Vector3 _inputJoyStick = Vector3.zero;
     private float Speed = 5f;
     private bool isBoostSpeed = false;
     private bool isPower = false;
     private bool isColdDownAttack = false;
+    public int health = 100;
+    public int maxHealth = 100;
 
-
+    // Pokemon UI (health bar, name)
+    public GameObject pkmUIPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
+        joystick = GameObject.Find("Joystick").GetComponent<FloatingJoystick>();
         camera.enabled = photonView.IsMine;
         mSlider = transform.Find("Canvas/PowerBar").GetComponent<Slider>();
-        Debug.Log(mSlider.name);
         if (photonView.IsMine)
         {
             mSlider.gameObject.SetActive(true);
@@ -35,6 +40,10 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         
         _body = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
+        // Set UI
+        GameObject pkmUI = Instantiate(pkmUIPrefab);
+        pkmUI.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+        
     }
 
     // Update is called once per frame
@@ -49,9 +58,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         UpdateCameraPosition();
         UpdateSlider();
         // Facing();
-        
     }
-
     private void UpdateSlider()
     {
         if (isPower) {
@@ -79,10 +86,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         _inputs = Vector3.zero;
         _inputs.x = Input.GetAxis("Horizontal");
         _inputs.z = Input.GetAxis("Vertical");
+        _inputJoyStick = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
         // Debug.Log(_inputs.x + " "+  _inputs.y + " "+ _inputs.z);
-        if (_inputs != Vector3.zero)
+        if (_inputs != Vector3.zero || _inputJoyStick!=Vector3.zero)
         {
             transform.forward = _inputs;
+            transform.forward = _inputJoyStick;
             _animator.SetBool("isMoving", true);
         }
         else
@@ -93,29 +102,31 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         if (Input.GetButtonDown("Attack1"))
         {
-            isPower = true;
+            EmitingAttackDown();
         } 
         else if (Input.GetButtonUp("Attack1"))
         {
-            isPower = false;
-            Attack1();
+            ReleaseAttack1();
             //photonView.RPC("Attack1", RpcTarget.All);
         }
         else if (Input.GetButtonDown("Attack2"))
         {
-            isPower = true;
+            EmitingAttackDown();
         } 
         else if (Input.GetButtonUp("Attack2"))
         {
-            isPower = false;
-            Attack2();
+            ReleaseAttack2();
            // photonView.RPC("Attack2", RpcTarget.All);
         }
         else if (Input.GetButtonDown("Boost") && !isBoostSpeed)
         {
             isBoostSpeed = true;
             StartCoroutine(coolDownBoostSpeed());
-        }
+        } 
+        /*else if (Input.GetButtonDown("RotateLeft"))
+        {
+           // camera.transform.rotation += new Vector3()
+        }*/
     }
     private void UpdateCameraPosition()
     {
@@ -137,6 +148,23 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         camera.transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z - 4f - cameraTransition);
         camera.transform.LookAt(transform);
     }
+
+    public void EmitingAttackDown()
+    {
+        isPower = true;
+    }
+
+    public void ReleaseAttack1()
+    {
+        isPower = false;
+        Attack1();
+    }
+
+    public void ReleaseAttack2()
+    {
+        isPower = false;
+        Attack2();
+    }
     public void Facing() {
         /*
         pkmPlayer.transform.LookAt(pkmOpponent.transform.position);
@@ -149,6 +177,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     void LateUpdate()
     {
         _body.MovePosition(_body.position + Speed * _inputs * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
+        _body.MovePosition(_body.position + Speed * _inputJoyStick * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
     }
     private IEnumerator resetSlider()
     {
@@ -211,5 +240,14 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         isColdDownAttack = true;
         yield return new WaitForSeconds(1f);
         isColdDownAttack = false;
+    }
+    [PunRPC]
+    public void DecreaseHeath(int amount)
+    {
+        this.health -= amount;
+        if (this.health < 0)
+        {
+            this.health = 0;
+        }
     }
 }
