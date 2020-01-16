@@ -1897,10 +1897,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fb397231a102542b66b4b1c2178ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   GroundElectric: {fileID: 708480146850461389}
   FaceElectricL: {fileID: 708480148093454598}
   FaceElectricR: {fileID: 708480148485290090}
-  target: {fileID: 0}
 --- !u!54 &6356173925672364506
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6801,6 +6801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00de5533f471314bb053a79394532cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha: 0.5
 --- !u!1 &708480148093454596
 GameObject:
   m_ObjectHideFlags: 0
@@ -11567,6 +11568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00de5533f471314bb053a79394532cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha: 0.5
 --- !u!1 &708480148485290089
 GameObject:
   m_ObjectHideFlags: 0
@@ -16333,6 +16335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00de5533f471314bb053a79394532cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alpha: 0.5
 --- !u!1 &3625125663685657460
 GameObject:
   m_ObjectHideFlags: 0
@@ -16469,6 +16472,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 708480146809965736}
     m_Modifications:
+    - target: {fileID: 83935366525623957, guid: 09b145df5cda39b4787882184954c8a7,
+        type: 3}
+      propertyPath: m_Name
+      value: shadow_obj
+      objectReference: {fileID: 0}
+    - target: {fileID: 83935366525623957, guid: 09b145df5cda39b4787882184954c8a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 83935366525623958, guid: 09b145df5cda39b4787882184954c8a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16522,16 +16535,6 @@ PrefabInstance:
     - target: {fileID: 83935366525623958, guid: 09b145df5cda39b4787882184954c8a7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 83935366525623957, guid: 09b145df5cda39b4787882184954c8a7,
-        type: 3}
-      propertyPath: m_Name
-      value: shadow_obj
-      objectReference: {fileID: 0}
-    - target: {fileID: 83935366525623957, guid: 09b145df5cda39b4787882184954c8a7,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

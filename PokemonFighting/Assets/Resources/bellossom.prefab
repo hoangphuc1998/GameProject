@@ -13443,6 +13443,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   pkmUIPrefab: {fileID: 170056, guid: 12627e38515ffbb4fbd5f3e779057b4c, type: 3}
+  score: 0
 --- !u!114 &4130431981662082140
 MonoBehaviour:
   m_ObjectHideFlags: 0
