@@ -10,35 +10,26 @@ public class Laucher : MonoBehaviourPunCallbacks
 
         #region Private Serializable Fields
 
-        [Tooltip("The Ui Panel to let the user enter name, connect and play")]
         [SerializeField]
         private GameObject controlPanel;
 
-        [Tooltip("The Ui Text to inform the user about the connection progress")]
         [SerializeField]
         private Text feedbackText;
 
-        [Tooltip("The maximum number of players per room")]
         [SerializeField]
         private byte maxPlayersPerRoom = 4;
 
-        [Tooltip("The UI Loader Anime")]
         [SerializeField]
         private LoaderAnime loaderAnime;
+
+        [SerializeField]
+        private Text roomID;
 
         #endregion
 
         #region Private Fields
-        /// <summary>
-        /// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon, 
-        /// we need to keep track of this to properly adjust the behavior when we receive call back by Photon.
-        /// Typically this is used for the OnConnectedToMaster() callback.
-        /// </summary>
         bool isConnecting;
 
-        /// <summary>
-        /// This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
-        /// </summary>
         string gameVersion = "1";
 
         #endregion
@@ -92,7 +83,10 @@ public class Laucher : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsConnected)
             {
                 LogFeedback("Joining Room...");
-                // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
+            // #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnJoinRandomFailed() and we'll create one.
+            if (roomID.text.Length != 0)
+                PhotonNetwork.JoinRoom(roomID.text);
+            else
                 PhotonNetwork.JoinRandomRoom();
             }
             else
@@ -163,11 +157,15 @@ public class Laucher : MonoBehaviourPunCallbacks
             PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = this.maxPlayersPerRoom });
         }
 
-
-        /// <summary>
-        /// Called after disconnecting from the Photon server.
-        /// </summary>
-        public override void OnDisconnected(DisconnectCause cause)
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        base.OnJoinRoomFailed(returnCode, message);
+        PhotonNetwork.JoinRandomRoom();
+    }
+    /// <summary>
+    /// Called after disconnecting from the Photon server.
+    /// </summary>
+    public override void OnDisconnected(DisconnectCause cause)
         {
             LogFeedback("<Color=Red>OnDisconnected</Color> " + cause);
             Debug.LogError("PUN Basics Tutorial/Launcher:Disconnected");
@@ -199,10 +197,6 @@ public class Laucher : MonoBehaviourPunCallbacks
             // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                Debug.Log("We load the 'Room for 1' ");
-
-                // #Critical
-                // Load the Room Level. 
                 PhotonNetwork.LoadLevel("BattleWithControl");
 
             }
