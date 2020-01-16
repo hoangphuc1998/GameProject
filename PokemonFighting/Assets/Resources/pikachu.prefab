@@ -2014,6 +2014,9 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 1
     Name: isJumping
+  - Type: 9
+    SynchronizeType: 0
+    Name: isDamage
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

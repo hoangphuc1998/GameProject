@@ -38,7 +38,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnLeftRoom()
     {
-        SceneManager.LoadScene("Launcher");
+        SceneManager.LoadScene("DeathScene");
     }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
@@ -71,6 +71,11 @@ public class BattleManager : MonoBehaviourPunCallbacks
     void LoadArena()
     {
         PhotonNetwork.LoadLevel("BattleWithControl");
+    }
+    public void ProcessDeath(GameObject go)
+    {
+        LeaveRoom();
+        PhotonNetwork.Destroy(go);
     }
     #endregion
 }
