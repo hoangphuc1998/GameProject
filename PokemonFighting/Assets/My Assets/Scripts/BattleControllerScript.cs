@@ -28,7 +28,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     private bool isColdDownAttack = false;
     public int health = 100;
     public int maxHealth = 100;
-
+    private bool isAR = false;
     private GameObject UIController;
     // Pokemon UI (health bar, name)
     public GameObject pkmUIPrefab;
@@ -38,11 +38,22 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-
+        _body = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
         cameraWrapper = transform.Find("CameraWrapper").gameObject;
         camera = transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<Camera>();
         transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<AudioListener>().enabled = photonView.IsMine;
         camera.enabled = photonView.IsMine;
+
+        if (GameObject.Find("ARCamera/ImageTarget/Map").gameObject)
+        {
+            isAR = true;
+            gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget/Map").gameObject.transform);
+            _body.useGravity = false;
+            cameraWrapper.SetActive(false);
+            camera.enabled = false;
+        }
+        
         
         if (photonView.IsMine)
         {
@@ -89,8 +100,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             gameObject.tag = "OtherPlayer";
         }
         
-        _body = GetComponent<Rigidbody>();
-        _animator = GetComponent<Animator>();
+        
         // Set UI
         GameObject pkmUI = Instantiate(pkmUIPrefab, gameObject.transform.Find("Canvas").transform);
         pkmUI.SendMessage("SetTarget", gameObject.GetComponent<BattleControllerScript>(), SendMessageOptions.RequireReceiver);
@@ -114,7 +124,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDeath(this.gameObject);
         }
         ControlPlayer();
-        UpdateCameraPosition();
+        if (!isAR) UpdateCameraPosition();
         UpdateSlider();
         // Facing();
     }
@@ -242,8 +252,27 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
     void LateUpdate()
     {
-        _body.MovePosition(_body.position + Speed * _inputs * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
-        _body.MovePosition(_body.position + Speed * _inputJoyStick * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
+        if (isAR)
+        {
+            float radY = GameObject.Find("ImageTarget").gameObject.transform.eulerAngles.y / 180f * 3.14f;
+            Debug.Log(radY + " " + Mathf.Sin(radY) + " " + Mathf.Cos(radY));
+            float a1 = Mathf.Sin(radY);
+            float a2 = Mathf.Cos(radY);
+            float dir = (Mathf.Abs(a1) + Mathf.Abs(a2)) / (a1 + a2);
+            transform.Translate(dir * (Mathf.Abs(a1) + Mathf.Abs(a2)) * Speed * _inputs * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime, GameObject.Find("ImageTarget").gameObject.transform);
+            transform.Translate(dir * (Mathf.Abs(a1) + Mathf.Abs(a2)) * Speed * _inputJoyStick * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime, GameObject.Find("ImageTarget").gameObject.transform);
+            //transform.Translate(Speed * new Vector3(_inputs.y, _inputs.x, _inputs.z) * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime, GameObject.Find("Map").gameObject.transform);
+            //transform.Translate(Speed * new Vector3(_inputJoyStick.y, _inputJoyStick.x, _inputJoyStick.z) * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime, GameObject.Find("Map").gameObject.transform);
+            //_body.MovePosition(_body.position + Speed * _inputs * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
+            //_body.MovePosition(_body.position + Speed * _inputJoyStick * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
+            transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+        }
+        else
+        {
+            _body.MovePosition(_body.position + Speed * _inputs * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
+            _body.MovePosition(_body.position + Speed * _inputJoyStick * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
+        }
+        
     }
     private IEnumerator resetSlider()
     {

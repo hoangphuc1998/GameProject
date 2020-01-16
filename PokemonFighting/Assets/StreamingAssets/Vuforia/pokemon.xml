@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="QR" size="1.000000 1.000000" />
+    <ImageTarget name="energy_leaf_scaled" size="1.000000 1.389417" />
+    <ImageTarget name="bellossom_scaled" size="200.000000 282.093658" />
+    <ImageTarget name="combee" size="1.000000 1.410383" />
+    <ImageTarget name="moltres" size="1.000000 1.410383" />
+    <ImageTarget name="dugtrio_aloha" size="1.000000 1.410383" />
+    <ImageTarget name="goldeen" size="1.000000 1.410383" />
+    <ImageTarget name="umbreon" size="1.000000 1.410383" />
+    <ImageTarget name="pelipper" size="1.000000 1.410383" />
+    <ImageTarget name="mimikyu" size="1.000000 1.410383" />
+    <ImageTarget name="pikachu" size="1.000000 1.398780" />
+    <ImageTarget name="bellossom" size="1.000000 1.410383" />
+  </Tracking>
+</QCARConfig>

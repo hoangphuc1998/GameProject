@@ -197,7 +197,7 @@ public class Laucher : MonoBehaviourPunCallbacks
             // #Critical: We only load if we are the first player, else we rely on  PhotonNetwork.AutomaticallySyncScene to sync our instance scene.
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                PhotonNetwork.LoadLevel("BattleWithControl");
+                PhotonNetwork.LoadLevel("BattleAR");
 
             }
         }

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -2067402452, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
+  m_Name: VuforiaConfiguration
+  m_EditorClassIdentifier: 
+  vuforia:
+    vuforiaLicenseKey: AQQuhF3/////AAABmXlC7UV3bUrXtlS580RcgVNnbyj50FqpfBvb1bootjUvRqiIR1e8TQKlKuJll5YVgfQSZeG3lyyLYlUTC75v99hiL/w8x2e+w4e1AlQYYm9kV8fESr3G6+lHBkKD4YYxFqNQ0wCuaO8m3zxgQ8OoudzgsBFT5f6a7O5p6rtWATwPxkaoLGDkmP9fLuhs2Vh6J12GFUSz5qqnLctbyR5EvQ1mhKIA9eCBM0j7+ArUp451DMijFOAdFusFHIiNWsT3rHzuogdqp6ssi+SxBOOMoOPzWjDL88WPUlH7Qzmmr1KOWWrunCrKWdqvq02LCWEiV5JgExYFIlpRUOFnHdg8EzXa26GeYcRXhAQihgCe6zY3
+    ufoLicenseKey: QWFKdUVQNy8vLy8vQUFBQUtGaHR3TDliemszK2hrdjBGN3FUVnhod0hPcHlBY28vMVd4RzdxRFNYb1RRS0xWL3FnLzVVWFVYRk82ejRKQnhZVFBtclZJTWZhdXJqK2s4RWpGQ3NhK3FUalF3c3NrekpUalRrNDR5ZFJETzRUMExMaWgrRy83NkIrZVE3OXNiSXdld0Z6TlBWb3hKemc3dnpLbm9reVd6K1YrNmVKVTc1SE13M1Q4Y0xsOUhqQ3dtdXhCWDVrM09jdGkrU2NXanRZcGFtUzFFV2cwcUkyQ3k2OGwyc0hSQW0zZlJPcThEY1hKUXpWbmxRQ2F4ditqYjhQQzdQYmIrVGg0cGdsNUJLSjh5TkZhekVpb3Z5dnpqbDF5S01kZzNINzJ1VHE2Mk9hYmQzVERhTXowNUxsWXF5eERzaVJXMS9oTnR5cHBvY0ttZjB5emxSUDZseVV4VzFKdWdmTG5yWEZvWldweXVGTFRHVW0rTGZKaU8=
+    delayedInitialization: 0
+    cameraDeviceModeSetting: -1
+    maxSimultaneousImageTargets: 2
+    maxSimultaneousObjectTargets: 1
+    useDelayedLoadingObjectTargets: 0
+    modelTargetRecoWhileExtendedTracked: 1
+    version: 8.5.9
+    eulaAcceptedVersions: '{"Values":["8.5","7.5","8.0","8.1"]}'
+  database:
+    disableModelExtraction: 0
+  videoBackground:
+    numDivisions: 2
+    videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a,
+      type: 3}
+    videoBackgroundEnabled: 1
+  deviceTracker:
+    autoInitTracker: 0
+    autoStartTracker: 0
+    arcoreRequirement: 0
+    autoImportArcore: 0
+  smartTerrain:
+    autoInitTracker: 0
+    autoStartTracker: 0
+  webcam:
+    deviceNameSetInEditor: Logitech Webcam C930e
+    turnOffWebCam: 0
+    renderTextureLayer: 30
