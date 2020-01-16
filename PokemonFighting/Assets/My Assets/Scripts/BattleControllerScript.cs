@@ -111,7 +111,15 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             isDead = true;
             PlayerPrefs.SetInt("score", this.score);
-            GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDeath(this.gameObject);
+            int gameMode = (int)PhotonNetwork.CurrentRoom.CustomProperties["mode"];
+            if (gameMode != 1)
+            {
+                GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDeath(this.gameObject);
+            }
+            else
+            {
+                GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDefeat(this.gameObject);
+            }
         }
         ControlPlayer();
         UpdateCameraPosition();

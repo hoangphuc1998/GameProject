@@ -72,15 +72,7 @@ public class animationPikachu : animationPKM
         // Attack
         photonView.RPC("Attack1Particle", RpcTarget.All);
 
-        // Calculate damage and score
-        BattleControllerScript script = target.GetComponent<BattleControllerScript>();
-        int score = script.score;
-        int health = script.health;
-        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.All, damage);
-        if (health <= damage)
-        {
-            this.gameObject.GetPhotonView().RPC("IncreaseScore", RpcTarget.All, score / 2 + 1);
-        }
+        calculateDamageAndScore(damage);
         
     }
 
@@ -99,16 +91,7 @@ public class animationPikachu : animationPKM
 
         // Attack
         photonView.RPC("Attack2Particle", RpcTarget.All);
-
-        // Calculate damage and score
-        BattleControllerScript script = target.GetComponent<BattleControllerScript>();
-        int score = script.score;
-        int health = script.health;
-        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.All, damage);
-        if (health <= damage)
-        {
-            this.gameObject.GetPhotonView().RPC("IncreaseScore", RpcTarget.All, score / 2 + 1);
-        }
+        calculateDamageAndScore(damage);
     }
 
     public override string moveName1() {

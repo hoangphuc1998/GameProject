@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using System;
 
 public class BattleManager : MonoBehaviourPunCallbacks
 {
@@ -33,14 +34,6 @@ public class BattleManager : MonoBehaviourPunCallbacks
     #endregion
     #region Photon Callbacks
 
-    /// <summary>
-    /// Called when the local player left the room. We need to load the launcher scene.
-    /// </summary>
-    public override void OnLeftRoom()
-    {
-        SceneManager.LoadScene("DeathScene");
-    }
-
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         if (PhotonNetwork.IsMasterClient)
@@ -59,9 +52,10 @@ public class BattleManager : MonoBehaviourPunCallbacks
 
     #region Public Methods
 
-    public void LeaveRoom()
+    public void LeaveRoom(string scene)
     {
         PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene(scene);
     }
 
     public void QuitApplication()
@@ -74,7 +68,18 @@ public class BattleManager : MonoBehaviourPunCallbacks
     }
     public void ProcessDeath(GameObject go)
     {
-        LeaveRoom();
+        LeaveRoom("DeathScene");
+        PhotonNetwork.Destroy(go);
+    }
+
+    public void ProcessDefeat(GameObject go)
+    {
+        LeaveRoom("LoseScene");
+        PhotonNetwork.Destroy(go);
+    }
+    public void ProcessVictory(GameObject go)
+    {
+        LeaveRoom("VictoryScene");
         PhotonNetwork.Destroy(go);
     }
     #endregion
