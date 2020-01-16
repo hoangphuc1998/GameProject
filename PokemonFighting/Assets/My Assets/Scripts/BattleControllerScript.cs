@@ -34,7 +34,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject pkmUIPrefab;
     // Score
     public int score = 0;
-
+    bool isDead = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,6 +101,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        if (isDead) return;
         if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
         {
             return;
@@ -108,8 +109,9 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         //Leave Room when die
         if (this.health <= 0)
         {
-            Destroy(this.gameObject);
-            PhotonNetwork.LeaveRoom();
+            isDead = true;
+            PlayerPrefs.SetInt("score", this.score);
+            GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDeath(this.gameObject);
         }
         ControlPlayer();
         UpdateCameraPosition();
@@ -325,12 +327,6 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             this.health = 0;
         }
-    }
-
-    public override void OnLeftRoom()
-    {
-        SceneManager.LoadScene("Launcher");
-        base.OnLeftRoom();
     }
 
     [PunRPC]
