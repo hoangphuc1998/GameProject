@@ -168,6 +168,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         _inputs = Vector3.zero;
         _inputs.x = Input.GetAxis("Horizontal");
         _inputs.z = Input.GetAxis("Vertical");
+        _inputJoyStick = Vector3.zero;
         _inputJoyStick = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
         // Debug.Log(_inputs.x + " "+  _inputs.y + " "+ _inputs.z);
         if (_inputs != Vector3.zero)

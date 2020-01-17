@@ -15,9 +15,9 @@ public class animationPikachu : animationPKM
     // Start is called before the first frame update
     void Start()
     {
-        GroundElectric.Stop();
-        FaceElectricL.Stop();
-        FaceElectricR.Stop();
+        if (GroundElectric) GroundElectric.Stop();
+        if (FaceElectricL) FaceElectricL.Stop();
+        if (FaceElectricR) FaceElectricR.Stop();
     }
     void Awake()
     {

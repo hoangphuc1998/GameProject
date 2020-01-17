@@ -13336,7 +13336,7 @@ GameObject:
   - component: {fileID: -2954639779693643803}
   - component: {fileID: 1941615836743965443}
   m_Layer: 0
-  m_Name: bellossom
+  m_Name: 182
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13442,7 +13442,6 @@ MonoBehaviour:
   pkmOpponent: {fileID: 0}
   health: 100
   maxHealth: 100
-  pkmUIPrefab: {fileID: 170056, guid: 12627e38515ffbb4fbd5f3e779057b4c, type: 3}
   score: 0
 --- !u!114 &4130431981662082140
 MonoBehaviour:
@@ -13803,6 +13802,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7933006357736481794}
     m_Modifications:
+    - target: {fileID: 83935366525623957, guid: 09b145df5cda39b4787882184954c8a7,
+        type: 3}
+      propertyPath: m_Name
+      value: shadow_obj
+      objectReference: {fileID: 0}
     - target: {fileID: 83935366525623958, guid: 09b145df5cda39b4787882184954c8a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13857,11 +13861,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 83935366525623957, guid: 09b145df5cda39b4787882184954c8a7,
-        type: 3}
-      propertyPath: m_Name
-      value: shadow_obj
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09b145df5cda39b4787882184954c8a7, type: 3}

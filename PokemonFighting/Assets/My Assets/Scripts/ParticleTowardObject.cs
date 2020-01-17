@@ -30,13 +30,11 @@ public class ParticleTowardObject : MonoBehaviourPunCallbacks
             }
             particleSystem.SetParticles(particles, count);
         }
-
-        
     }
+
 
     public void Play()
     {
-        
         particleSystem.Play();
     }
 

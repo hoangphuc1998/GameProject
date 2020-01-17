@@ -43,5 +43,10 @@ MonoBehaviour:
   - IncreaseScore
   - Damage1Particle
   - Damage2Particle
+  - Update_
+  - Play
+  - Update
+  - ParticleToward
+  - PlayParticle
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -17,8 +17,8 @@ public class animationBellossom : animationPKM
     // Start is called before the first frame update
     void Start()
     {
-        particleAttack1.Stop();
-        particleAttack2.Stop();
+        if (particleAttack1) particleAttack1.Stop();
+        if (particleAttack2) particleAttack2.Stop();
     }
     void Awake()
     {
