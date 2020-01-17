@@ -60,11 +60,13 @@ public class animationPikachu : animationPKM
 
     public override void Attack1(GameObject target, int power) {
         var x = GroundElectric.main;
-        int damage = 50;
+        int damage = 0;
         if (power == 0)
         {
+            damage = 10;
         } else if (power == 1)
         {
+            damage = 25;
         }
         anim.SetTrigger("isAttack");
         this.target = target;
@@ -80,11 +82,13 @@ public class animationPikachu : animationPKM
     public override void Attack2(GameObject target, int power) {
         var x = FaceElectricL.main;
         var y = FaceElectricR.main;
-        int damage = 50;
+        int damage = 0;
         if (power == 0)
         {
+            damage = 10;
         } else if (power == 1)
         {
+            damage = 20;
         }
         anim.SetTrigger("isJumping");
         this.target = target;

@@ -34,8 +34,6 @@ public class ParticleTowardObject : MonoBehaviourPunCallbacks, IPunObservable
 
     public void SetTarget(GameObject target)
     {
-        Debug.Log("Sett target");
-        Debug.Log(target.name);
         this.target = target;
     }
     public void Play()

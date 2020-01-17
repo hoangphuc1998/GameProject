@@ -13317,6 +13317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.05
+  target: {fileID: 0}
 --- !u!1 &7933006357736454178
 GameObject:
   m_ObjectHideFlags: 0

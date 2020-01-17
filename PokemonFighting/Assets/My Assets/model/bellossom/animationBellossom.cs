@@ -59,15 +59,21 @@ public class animationBellossom : animationPKM
     public override void Attack1(GameObject target, int power)
     {
         var x = particleAttack1.main;
+        int damage = 0;
         if (power == 0)
         {
+            damage = 10;
+            GetComponent<BattleControllerScript>().health += 5;
         }
         else if (power == 1)
         {
+            damage = 10;
+            GetComponent<BattleControllerScript>().health += 10;
         }
         anim.SetTrigger("isJumping");
         this.target = target;
         photonView.RPC("Attack1Particle", RpcTarget.All);
+        calculateDamageAndScore(damage, power);
     }
 
 
@@ -75,15 +81,19 @@ public class animationBellossom : animationPKM
     {
         var x = particleAttack2.main;
         var y = particleAttack2.main;
+        int damage = 0;
         if (power == 0)
         {
+            damage = 10;
         }
         else if (power == 1)
         {
+            damage = 20;
         }
         anim.SetTrigger("isJumping");
         this.target = target;
         photonView.RPC("Attack2Particle", RpcTarget.All);
+        calculateDamageAndScore(damage, power);
     }
 
     [PunRPC]
