@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VictoryScene.unity
     guid: d4dd4d88ca511e6449b2f864f44d5a90
+  - enabled: 1
+    path: Assets/Scenes/BattleAR.unity
+    guid: 121241084bd351e469c1aa90c806adcd
   m_configObjects: {}

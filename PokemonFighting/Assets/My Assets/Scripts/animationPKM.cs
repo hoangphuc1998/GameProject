@@ -32,7 +32,7 @@ public abstract class animationPKM : MonoBehaviourPunCallbacks, IPunObservable
         if (health <= damage)
         {
             int gameMode = (int) PhotonNetwork.CurrentRoom.CustomProperties["mode"];
-            if (gameMode != 1)
+            if (gameMode == 2)
             {
                 this.gameObject.GetPhotonView().RPC("IncreaseScore", RpcTarget.All, score / 2 + 1);
             }
