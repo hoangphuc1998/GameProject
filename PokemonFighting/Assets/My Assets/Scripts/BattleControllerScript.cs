@@ -346,7 +346,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             return;
         }
         GetComponent<animationPKM>().Attack1(target, st);
-        StartCoroutine(coolDownAttack());
+        if (!isDead)
+            StartCoroutine(coolDownAttack());
     }
 
     private void Attack2()
@@ -360,7 +361,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             return;
         }
         GetComponent<animationPKM>().Attack2(target, st);
-        StartCoroutine(coolDownAttack());
+        if (!isDead)
+            StartCoroutine(coolDownAttack());
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
