@@ -37,10 +37,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        if (!photonView.IsMine)
-        {
-            gameObject.transform.parent.transform.parent.GetComponent<Camera>().enabled = false;
-        }
+        
         GameObject dm1 = Instantiate(Resources.Load("Damage1"), gameObject.transform) as GameObject;
         dm1.name = "Damage1";
         dm1.GetComponent<ParticleSystem>().Stop();
@@ -63,6 +60,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             _body.useGravity = false;
             cameraWrapper.SetActive(false);
             camera.enabled = false;
+
+            if (!photonView.IsMine)
+            {
+                gameObject.transform.parent.transform.parent.GetComponent<Camera>().enabled = false;
+            }
+
         }
 
         if (photonView.IsMine)
@@ -166,7 +169,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             LocalPlayerInstance = gameObject;
         }
         DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(gameObject.transform.parent.transform.parent.gameObject);
+        if (_StaticData.ar) DontDestroyOnLoad(gameObject.transform.parent.transform.parent.gameObject);
 
     }
 
