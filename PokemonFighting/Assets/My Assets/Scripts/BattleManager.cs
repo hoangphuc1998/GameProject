@@ -48,7 +48,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            LoadArena();
+            //LoadArena();
         }
     }
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player otherPlayer)

@@ -61,10 +61,11 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             {
                 ARCamera = Instantiate(Resources.Load("ARCamera")) as GameObject;
                 ARCamera.name = "ARCamera";
-                DontDestroyOnLoad(ARCamera);
+                //DontDestroyOnLoad(ARCamera);
             }
             isAR = true;
             gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget").gameObject.transform);
+            gameObject.transform.localPosition = Vector3.zero;
             _body.useGravity = false;
             cameraWrapper.SetActive(false);
             camera.enabled = false;
@@ -299,6 +300,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             //_body.MovePosition(_body.position + Speed * _inputs * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
             //_body.MovePosition(_body.position + Speed * _inputJoyStick * (!isBoostSpeed ? 1 : 2) * Time.fixedDeltaTime);
             transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+            transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
         }
         else
         {
