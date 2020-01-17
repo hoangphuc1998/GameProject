@@ -16,7 +16,7 @@ public class animationPikachu : animationPKM
     void Start()
     {
         if (GroundElectric) GroundElectric.Stop();
-        if (FaceElectricL) FaceElectricL.Stop();
+        if (FaceElectricL)  FaceElectricL.Stop();
         if (FaceElectricR) FaceElectricR.Stop();
     }
     void Awake()
@@ -104,12 +104,15 @@ public class animationPikachu : animationPKM
     [PunRPC]
     public void Attack1Particle()
     {
-        GroundElectric.Play();
+        GroundElectric.GetComponent<ParticleTowardObject>().SetTarget(this.target);
+        GroundElectric.GetComponent<ParticleTowardObject>().Play();
     }
     [PunRPC]
     public void Attack2Particle()
     {
+        FaceElectricL.GetComponent<ParticleTowardObject>().SetTarget(this.target);
         FaceElectricL.GetComponent<ParticleTowardObject>().Play();
+        FaceElectricR.GetComponent<ParticleTowardObject>().SetTarget(this.target);
         FaceElectricR.GetComponent<ParticleTowardObject>().Play();
     }
        

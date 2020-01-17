@@ -6804,6 +6804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.5
+  target: {fileID: 0}
 --- !u!1 &708480148093454596
 GameObject:
   m_ObjectHideFlags: 0
@@ -6816,7 +6817,6 @@ GameObject:
   - component: {fileID: 708480148093454598}
   - component: {fileID: 708480148093454599}
   - component: {fileID: 8574040422857631532}
-  - component: {fileID: 6512187366210475291}
   - component: {fileID: 4159023941742376854}
   - component: {fileID: 1392149453730118942}
   m_Layer: 0
@@ -11574,28 +11574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.5
---- !u!114 &6512187366210475291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708480148093454596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 0
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
+  target: {fileID: 0}
 --- !u!114 &4159023941742376854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11630,6 +11609,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 4159023941742376854}
+  - {fileID: 8574040422857631532}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -11645,7 +11625,6 @@ GameObject:
   - component: {fileID: 708480148485290090}
   - component: {fileID: 708480148485290091}
   - component: {fileID: 3059169693327675923}
-  - component: {fileID: 149259939233050664}
   - component: {fileID: 8281311335565237082}
   - component: {fileID: 6789933951212620082}
   m_Layer: 0
@@ -16403,28 +16382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.5
---- !u!114 &149259939233050664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708480148485290089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 0
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
+  target: {fileID: 0}
 --- !u!114 &8281311335565237082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16459,6 +16417,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 8281311335565237082}
+  - {fileID: 3059169693327675923}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

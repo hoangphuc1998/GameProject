@@ -20,7 +20,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
         //pkmPrefab = Instantiate(Resources.Load("Controlable/" + _StaticData.choosenPKM.ToString()) as GameObject) ;
         if (!PhotonNetwork.IsConnected)
         {
-            SceneManager.LoadScene("Laucher");
+            SceneManager.LoadScene("Launcher");
             return;
         }
         // Create pokemon

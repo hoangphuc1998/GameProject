@@ -48,5 +48,6 @@ MonoBehaviour:
   - Update
   - ParticleToward
   - PlayParticle
+  - SetTarget
   DisableAutoOpenWizard: 1
   ShowSettings: 1

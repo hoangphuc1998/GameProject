@@ -39,9 +39,11 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         GameObject dm1 = Instantiate(Resources.Load("Damage1"), gameObject.transform) as GameObject;
         dm1.name = "Damage1";
+        dm1.GetComponent<ParticleSystem>().Stop();
         
         GameObject dm2 = Instantiate(Resources.Load("Damage2"), gameObject.transform) as GameObject;
         dm2.name = "Damage2";
+        dm2.GetComponent<ParticleSystem>().Stop();
 
         _body = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();

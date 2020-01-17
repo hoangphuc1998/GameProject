@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ParticleTowardObject : MonoBehaviourPunCallbacks
+public class ParticleTowardObject : MonoBehaviourPunCallbacks, IPunObservable   
 {
     ParticleSystem particleSystem;
     public float alpha = 0.5f;
-    private GameObject target = null;
+    public GameObject target = null;
     void Start()
     {
         particleSystem = GetComponent<ParticleSystem>();
@@ -15,7 +15,7 @@ public class ParticleTowardObject : MonoBehaviourPunCallbacks
     }
     private void Update()
     {
-        target = GetComponentInParent<animationPKM>().target;
+        //target = GetComponentInParent<animationPKM>().target;
         if (target == null) return;
         if (particleSystem.isPlaying)
         {
@@ -32,10 +32,19 @@ public class ParticleTowardObject : MonoBehaviourPunCallbacks
         }
     }
 
-
+    public void SetTarget(GameObject target)
+    {
+        Debug.Log("Sett target");
+        Debug.Log(target.name);
+        this.target = target;
+    }
     public void Play()
     {
         particleSystem.Play();
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
+    }
 }
