@@ -31,7 +31,6 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     private bool isAR = false;
     private GameObject UIController;
     // Pokemon UI (health bar, name)
-    public GameObject pkmUIPrefab;
     // Score
     public int score = 0;
     bool isDead = false;
@@ -45,7 +44,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<AudioListener>().enabled = photonView.IsMine;
         camera.enabled = photonView.IsMine;
 
-        if (GameObject.Find("ARCamera/ImageTarget/Map").gameObject)
+        if (GameObject.Find("ARCamera/ImageTarget/Map") != null)
         {
             isAR = true;
             gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget/Map").gameObject.transform);
@@ -53,8 +52,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             cameraWrapper.SetActive(false);
             camera.enabled = false;
         }
-        
-        
+
         if (photonView.IsMine)
         {
             UIController = Instantiate(Resources.Load("UIController") as GameObject, gameObject.transform);
@@ -99,12 +97,14 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
             gameObject.tag = "OtherPlayer";
         }
-        
-        
-        // Set UI
-        GameObject pkmUI = Instantiate(pkmUIPrefab, gameObject.transform.Find("Canvas").transform);
-        pkmUI.SendMessage("SetTarget", gameObject.GetComponent<BattleControllerScript>(), SendMessageOptions.RequireReceiver);
 
+
+        // Set UI
+        Debug.Log(photonView.IsMine);
+        Debug.Log(photonView.IsOwnerActive);
+       // GameObject pkmUI = Instantiate(Resources.Load("PKMUI") as GameObject, gameObject.transform.Find("Canvas").transform);
+        // pkmUI.SendMessage("SetTarget", gameObject.GetComponent<BattleControllerScript>(), SendMessageOptions.RequireReceiver);
+        
 
     }
 
@@ -121,7 +121,15 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         {
             isDead = true;
             PlayerPrefs.SetInt("score", this.score);
-            GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDeath(this.gameObject);
+            int gameMode = (int)PhotonNetwork.CurrentRoom.CustomProperties["mode"];
+            if (gameMode != 1)
+            {
+                GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDeath(this.gameObject);
+            }
+            else
+            {
+                GameObject.Find("BattleManager").GetComponent<BattleManager>().ProcessDefeat(this.gameObject);
+            }
         }
         ControlPlayer();
         if (!isAR) UpdateCameraPosition();
@@ -328,6 +336,11 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         StartCoroutine(coolDownAttack());
     }
 
+    private void Attacked()
+    {
+        GetComponent<animationPKM>().Attacked();
+    }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -351,6 +364,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     [PunRPC]
     public void DecreaseHealth(int amount)
     {
+        Attacked();
         this.health -= amount;
         if (this.health < 0)
         {

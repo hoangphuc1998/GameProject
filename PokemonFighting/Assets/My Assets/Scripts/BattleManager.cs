@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using System;
 
 public class BattleManager : MonoBehaviourPunCallbacks
 {
@@ -16,6 +17,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
     #region MonoBehaviour CallBacks
     void Start()
     {
+        pkmPrefab = Instantiate(Resources.Load("Controlable/" + _StaticData.choosenPKM.ToString()) as GameObject) ;
         if (!PhotonNetwork.IsConnected)
         {
             SceneManager.LoadScene("Laucher");
@@ -23,7 +25,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
         }
         // Create pokemon
         if(BattleControllerScript.LocalPlayerInstance == null)
-            PhotonNetwork.Instantiate(this.pkmPrefab.name, transform.position, Quaternion.identity, 0);
+            PhotonNetwork.Instantiate("Controlable/" + _StaticData.choosenPKM.ToString(), transform.position, Quaternion.identity, 0);
     }
     void Update()
     {
@@ -32,14 +34,6 @@ public class BattleManager : MonoBehaviourPunCallbacks
 
     #endregion
     #region Photon Callbacks
-
-    /// <summary>
-    /// Called when the local player left the room. We need to load the launcher scene.
-    /// </summary>
-    public override void OnLeftRoom()
-    {
-        SceneManager.LoadScene("DeathScene");
-    }
 
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
@@ -59,9 +53,10 @@ public class BattleManager : MonoBehaviourPunCallbacks
 
     #region Public Methods
 
-    public void LeaveRoom()
+    public void LeaveRoom(string scene)
     {
         PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene(scene);
     }
 
     public void QuitApplication()
@@ -74,7 +69,18 @@ public class BattleManager : MonoBehaviourPunCallbacks
     }
     public void ProcessDeath(GameObject go)
     {
-        LeaveRoom();
+        LeaveRoom("DeathScene");
+        PhotonNetwork.Destroy(go);
+    }
+
+    public void ProcessDefeat(GameObject go)
+    {
+        LeaveRoom("LoseScene");
+        PhotonNetwork.Destroy(go);
+    }
+    public void ProcessVictory(GameObject go)
+    {
+        LeaveRoom("VictoryScene");
         PhotonNetwork.Destroy(go);
     }
     #endregion

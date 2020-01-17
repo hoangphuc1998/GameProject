@@ -56,7 +56,11 @@ public class animationBellossom : animationPKM
             pkm.GetComponent<Renderer>().materials[3].mainTextureOffset = new Vector2(eyeOffsetX[blink2], eyeOffsetY[blink2]);
         }
     }
+    public override void Attacked()
+    {
+        anim.SetTrigger("isDamage");
 
+    }
     public override void Attack1(GameObject target, int power)
     {
         var x = particleAttack1.main;

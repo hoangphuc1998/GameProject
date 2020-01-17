@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DeathScene.unity
     guid: 6315c62beb3ce7d4f834f42327716abb
   - enabled: 1
-    path: Assets/Scenes/BattleAR.unity
-    guid: 121241084bd351e469c1aa90c806adcd
+    path: Assets/Scenes/LoseScene.unity
+    guid: 988805a2504662a4b8c6348e39c304f7
+  - enabled: 1
+    path: Assets/Scenes/VictoryScene.unity
+    guid: d4dd4d88ca511e6449b2f864f44d5a90
   m_configObjects: {}

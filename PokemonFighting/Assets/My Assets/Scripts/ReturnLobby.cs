@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 public class ReturnLobby : MonoBehaviour
 {
-    public Text scoreText;
+    public Text scoreText = null;
     // Start is called before the first frame update
     void Awake()
     {
-        scoreText.text = "Your Score: " + PlayerPrefs.GetInt("score", 0).ToString();
+        if(scoreText != null)
+            scoreText.text = "Your Score: " + PlayerPrefs.GetInt("score", 0).ToString();
     }
 
     // Update is called once per frame
