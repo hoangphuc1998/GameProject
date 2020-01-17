@@ -7,9 +7,11 @@ using Photon.Pun;
 
 public class Laucher : MonoBehaviourPunCallbacks
 {
-
+    void Start()
+    {
+        _StaticData.ar = false;
+    }
     #region Private Serializable Fields
-    private bool ar = false;
     [SerializeField]
     private LoaderAnime loaderAnime;
 
@@ -46,7 +48,7 @@ public class Laucher : MonoBehaviourPunCallbacks
     public void Connect()
     {
         Debug.Log("Connect room");
-        if (gameMode.text.Equals("Arena"))
+        if (gameMode.text.Equals("Arena") && _StaticData.ar)
         {
             logText.text = "Switch to 1vs1 Mode to play in AR.";
             loaderAnime.StopLoaderAnimation();
@@ -76,13 +78,13 @@ public class Laucher : MonoBehaviourPunCallbacks
 
     public void changeAR()
     {
-        ar = !ar;
-        Debug.Log(ar);
+        _StaticData.ar = !_StaticData.ar;
+        Debug.Log(_StaticData.ar);
     }
     public void CreateRoom()
     {
         Debug.Log("Create room");
-        if (gameMode.text.Equals("Arena") && ar)
+        if (gameMode.text.Equals("Arena") && _StaticData.ar)
         {
             logText.text = "Switch to 1vs1 Mode to play in AR.";
             loaderAnime.StopLoaderAnimation();
@@ -107,7 +109,7 @@ public class Laucher : MonoBehaviourPunCallbacks
                 {
                     maxPlayer = 5;
                     mode = 2;
-                } else if (ar)
+                } else if (_StaticData.ar)
                 {
                     mode = 3;
                 }
@@ -163,7 +165,7 @@ public class Laucher : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            if (ar)
+            if (_StaticData.ar)
             {
                 PhotonNetwork.LoadLevel("BattleAR");
             } else

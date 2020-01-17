@@ -66,7 +66,14 @@ public class BattleManager : MonoBehaviourPunCallbacks
     }
     void LoadArena()
     {
-        PhotonNetwork.LoadLevel("BattleWithControl");
+        if (_StaticData.ar)
+        {
+            PhotonNetwork.LoadLevel("BattleAR");
+        } else
+        {
+            PhotonNetwork.LoadLevel("BattleWithControl");
+        }
+        
     }
     public void ProcessDeath(GameObject go)
     {
