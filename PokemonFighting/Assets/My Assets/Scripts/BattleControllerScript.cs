@@ -37,6 +37,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        GameObject dm1 = Instantiate(Resources.Load("Damage1"), gameObject.transform) as GameObject;
+        dm1.name = "Damage1";
+        
+        GameObject dm2 = Instantiate(Resources.Load("Damage2"), gameObject.transform) as GameObject;
+        dm2.name = "Damage2";
+
         _body = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
         cameraWrapper = transform.Find("CameraWrapper").gameObject;
@@ -100,10 +106,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
 
         // Set UI
-        Debug.Log(photonView.IsMine);
-        Debug.Log(photonView.IsOwnerActive);
-       // GameObject pkmUI = Instantiate(Resources.Load("PKMUI") as GameObject, gameObject.transform.Find("Canvas").transform);
-        // pkmUI.SendMessage("SetTarget", gameObject.GetComponent<BattleControllerScript>(), SendMessageOptions.RequireReceiver);
+        GameObject pkmUI = Instantiate(Resources.Load("PKMUI") as GameObject, gameObject.transform.Find("Canvas").transform);
+        pkmUI.SendMessage("SetTarget", gameObject.GetComponent<BattleControllerScript>(), SendMessageOptions.RequireReceiver);
         
 
     }
@@ -145,7 +149,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             else if (mSlider.value <= 0) sliderDir = true;
         } else
         {
-            StartCoroutine(resetSlider());
+            if (!isDead)
+                StartCoroutine(resetSlider());
         }
     }
     void Awake()
@@ -336,11 +341,6 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         StartCoroutine(coolDownAttack());
     }
 
-    private void Attacked()
-    {
-        GetComponent<animationPKM>().Attacked();
-    }
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -362,9 +362,9 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         isColdDownAttack = false;
     }
     [PunRPC]
-    public void DecreaseHealth(int amount)
+    public void DecreaseHealth(int amount, int power)
     {
-        Attacked();
+        GetComponent<animationPKM>().Attacked(power);
         this.health -= amount;
         if (this.health < 0)
         {

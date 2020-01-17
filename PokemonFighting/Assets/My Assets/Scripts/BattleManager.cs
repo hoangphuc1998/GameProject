@@ -9,23 +9,24 @@ public class BattleManager : MonoBehaviourPunCallbacks
 {
 
     #region Private Fields
-    [SerializeField]
-    private GameObject pkmPrefab;
+    // [SerializeField]
+    // private GameObject pkmPrefab;
 
     #endregion
 
     #region MonoBehaviour CallBacks
     void Start()
     {
-        pkmPrefab = Instantiate(Resources.Load("Controlable/" + _StaticData.choosenPKM.ToString()) as GameObject) ;
+        //pkmPrefab = Instantiate(Resources.Load("Controlable/" + _StaticData.choosenPKM.ToString()) as GameObject) ;
         if (!PhotonNetwork.IsConnected)
         {
             SceneManager.LoadScene("Laucher");
             return;
         }
         // Create pokemon
-        if(BattleControllerScript.LocalPlayerInstance == null)
+        if(BattleControllerScript.LocalPlayerInstance == null) { 
             PhotonNetwork.Instantiate("Controlable/" + _StaticData.choosenPKM.ToString(), transform.position, Quaternion.identity, 0);
+        }
     }
     void Update()
     {

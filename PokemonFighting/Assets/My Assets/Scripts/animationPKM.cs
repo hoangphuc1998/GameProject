@@ -10,14 +10,25 @@ public abstract class animationPKM : MonoBehaviourPunCallbacks, IPunObservable
     public abstract string moveName1();
     public abstract string moveName2();
 
-    public abstract void Attacked();
-    public void calculateDamageAndScore(int damage)
+    public void Attacked(int power) {
+        GetComponent<Animator>().SetTrigger("isDamage");
+        if (power == 0)
+        {
+            photonView.RPC("Damage1Particle", RpcTarget.All);
+        }
+        else if (power == 1)
+        {
+            photonView.RPC("Damage2Particle", RpcTarget.All);
+        }
+    }
+
+    public void calculateDamageAndScore(int damage, int power)
     {
         // Calculate damage and score
         BattleControllerScript script = target.GetComponent<BattleControllerScript>();
         int score = script.score;
         int health = script.health;
-        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.All, damage);
+        target.GetPhotonView().RPC("DecreaseHealth", RpcTarget.All, damage, power);
         if (health <= damage)
         {
             int gameMode = (int) PhotonNetwork.CurrentRoom.CustomProperties["mode"];
@@ -42,5 +53,17 @@ public abstract class animationPKM : MonoBehaviourPunCallbacks, IPunObservable
         {
 
         }
+    }
+
+    [PunRPC]
+    public void Damage1Particle()
+    {
+        gameObject.transform.Find("Damage1").GetComponent<ParticleSystem>().Play();
+    }
+
+    [PunRPC]
+    public void Damage2Particle()
+    {
+        gameObject.transform.Find("Damage2").GetComponent<ParticleSystem>().Play();
     }
 }

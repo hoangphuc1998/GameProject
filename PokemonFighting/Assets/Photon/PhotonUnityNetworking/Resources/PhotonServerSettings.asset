@@ -41,5 +41,7 @@ MonoBehaviour:
   - DecreaseHeath
   - DecreaseHealth
   - IncreaseScore
+  - Damage1Particle
+  - Damage2Particle
   DisableAutoOpenWizard: 1
   ShowSettings: 1

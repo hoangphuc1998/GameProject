@@ -72,14 +72,8 @@ public class animationPikachu : animationPKM
         // Attack
         photonView.RPC("Attack1Particle", RpcTarget.All);
 
-        calculateDamageAndScore(damage);
+        calculateDamageAndScore(damage, power);
         
-    }
-
-    public override void Attacked()
-    {
-        anim.SetTrigger("isDamage");
-
     }
 
 
@@ -97,7 +91,7 @@ public class animationPikachu : animationPKM
 
         // Attack
         photonView.RPC("Attack2Particle", RpcTarget.All);
-        calculateDamageAndScore(damage);
+        calculateDamageAndScore(damage, power);
     }
 
     public override string moveName1() {
