@@ -27,7 +27,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
         if(BattleControllerScript.LocalPlayerInstance == null) { 
             if (_StaticData.ar)
             {
-                PhotonNetwork.Instantiate("ARControlable/" + _StaticData.choosenPKM.ToString(), transform.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate("Controlable/" + _StaticData.choosenPKM.ToString(), transform.position, Quaternion.identity, 0);
 
             }
             else

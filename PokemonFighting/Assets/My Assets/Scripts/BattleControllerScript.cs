@@ -55,15 +55,16 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         if (_StaticData.ar)
         {
+            DontDestroyOnLoad(GameObject.Find("ARCamera"));
             isAR = true;
-            //gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget/Map").gameObject.transform);
+            gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget").gameObject.transform);
             _body.useGravity = false;
             cameraWrapper.SetActive(false);
             camera.enabled = false;
 
             if (!photonView.IsMine)
             {
-                gameObject.transform.parent.transform.parent.GetComponent<Camera>().enabled = false;
+                //gameObject.transform.parent.transform.parent.GetComponent<Camera>().enabled = false;
             }
 
         }
@@ -169,7 +170,6 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             LocalPlayerInstance = gameObject;
         }
         DontDestroyOnLoad(gameObject);
-        if (_StaticData.ar) DontDestroyOnLoad(gameObject.transform.parent.transform.parent.gameObject);
 
     }
 
