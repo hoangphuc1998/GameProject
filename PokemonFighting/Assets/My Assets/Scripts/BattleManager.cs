@@ -55,7 +55,7 @@ public class BattleManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            LoadArena();
+            //LoadArena();
         }
     }
     #endregion

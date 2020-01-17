@@ -57,9 +57,12 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         if (_StaticData.ar)
         {
-            ARCamera = Instantiate(Resources.Load("ARCamera")) as GameObject;
-            ARCamera.name = "ARCamera";
-            DontDestroyOnLoad(ARCamera);
+            if (GameObject.Find("ARCamera") == null)
+            {
+                ARCamera = Instantiate(Resources.Load("ARCamera")) as GameObject;
+                ARCamera.name = "ARCamera";
+                DontDestroyOnLoad(ARCamera);
+            }
             isAR = true;
             gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget").gameObject.transform);
             _body.useGravity = false;
