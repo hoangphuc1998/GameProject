@@ -34,9 +34,11 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Score
     public int score = 0;
     bool isDead = false;
+    GameObject ARCamera;
     // Start is called before the first frame update
     void Start()
     {
+        
         
         GameObject dm1 = Instantiate(Resources.Load("Damage1"), gameObject.transform) as GameObject;
         dm1.name = "Damage1";
@@ -55,7 +57,9 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
 
         if (_StaticData.ar)
         {
-            DontDestroyOnLoad(GameObject.Find("ARCamera"));
+            ARCamera = Instantiate(Resources.Load("ARCamera")) as GameObject;
+            ARCamera.name = "ARCamera";
+            DontDestroyOnLoad(ARCamera);
             isAR = true;
             gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget").gameObject.transform);
             _body.useGravity = false;
@@ -170,6 +174,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             LocalPlayerInstance = gameObject;
         }
         DontDestroyOnLoad(gameObject);
+        
 
     }
 
