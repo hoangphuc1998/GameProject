@@ -25,7 +25,15 @@ public class BattleManager : MonoBehaviourPunCallbacks
         }
         // Create pokemon
         if(BattleControllerScript.LocalPlayerInstance == null) { 
-            PhotonNetwork.Instantiate("Controlable/" + _StaticData.choosenPKM.ToString(), transform.position, Quaternion.identity, 0);
+            if (_StaticData.ar)
+            {
+                PhotonNetwork.Instantiate("ARControlable/" + _StaticData.choosenPKM.ToString(), transform.position, Quaternion.identity, 0);
+
+            }
+            else
+            {
+                PhotonNetwork.Instantiate("Controlable/" + _StaticData.choosenPKM.ToString(), transform.position, Quaternion.identity, 0);
+            }
         }
     }
     void Update()

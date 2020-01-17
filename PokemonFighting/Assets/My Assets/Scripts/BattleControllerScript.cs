@@ -37,6 +37,10 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            gameObject.transform.parent.transform.parent.GetComponent<Camera>().enabled = false;
+        }
         GameObject dm1 = Instantiate(Resources.Load("Damage1"), gameObject.transform) as GameObject;
         dm1.name = "Damage1";
         dm1.GetComponent<ParticleSystem>().Stop();
@@ -52,10 +56,10 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
         transform.Find("CameraWrapper/ThirdPersonCamera").GetComponent<AudioListener>().enabled = photonView.IsMine;
         camera.enabled = photonView.IsMine;
 
-        if (GameObject.Find("ARCamera/ImageTarget/Map") != null)
+        if (_StaticData.ar)
         {
             isAR = true;
-            gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget/Map").gameObject.transform);
+            //gameObject.transform.SetParent(GameObject.Find("ARCamera/ImageTarget/Map").gameObject.transform);
             _body.useGravity = false;
             cameraWrapper.SetActive(false);
             camera.enabled = false;
@@ -162,6 +166,8 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
             LocalPlayerInstance = gameObject;
         }
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject.transform.parent.transform.parent.gameObject);
+
     }
 
     private void ControlPlayer()
@@ -270,7 +276,7 @@ public class BattleControllerScript : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (isAR)
         {
-            float radY = GameObject.Find("ImageTarget").gameObject.transform.eulerAngles.y / 180f * 3.14f;
+            float radY = gameObject.transform.parent.gameObject.transform.eulerAngles.y / 180f * 3.14f;
             Debug.Log(radY + " " + Mathf.Sin(radY) + " " + Mathf.Cos(radY));
             float a1 = Mathf.Sin(radY);
             float a2 = Mathf.Cos(radY);

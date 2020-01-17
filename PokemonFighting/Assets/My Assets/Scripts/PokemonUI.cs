@@ -77,8 +77,8 @@ public class PokemonUI : MonoBehaviour
                 this.transform.position = cameraObject.GetComponent<Camera>().WorldToScreenPoint(targetPosition) + screenOffset;
             else
             {
-                cameraObject = GameObject.Find("ARCamera");
-                this.transform.position = cameraObject.GetComponent<Camera>().WorldToScreenPoint(targetPosition);
+                //cameraObject = GameObject.Find("ARCamera");
+                //this.transform.position = cameraObject.GetComponent<Camera>().WorldToScreenPoint(targetPosition);
             }
         }
 
