@@ -9,7 +9,7 @@
 - A pokemon fighting game with third person view controller. Player will become one of the two most adorable Pokemon which are Pikachu and Bellossom to fight until you are the last man standing.
 - Game can be played on both PC and Android. It's integrated with AR technology to further push your excitement.
 ## Demo
-https://tinyurl.com/16cntn_gamedev_3idiots
+https://tinyurl.com/16cntn-gamedev-3idiots
 ## Resource
 - Skybxox: https://assetstore.unity.com/packages/2d/textures-materials/sky/fantasy-skybox-free-18353
 - JoyStick: https://assetstore.unity.com/packages/tools/input-management/joystick-pack-107631
